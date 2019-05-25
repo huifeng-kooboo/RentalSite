@@ -14,7 +14,7 @@ def login(request):
             record = UserLogin.objects.get(username=username,password=password) #获取数据库数据
             if record.DoesNotExist: #没找到数据
                 warn_login_str = "用户名或密码错误"
-                return render(request,"login/login.html",{"login_error":warn_login_str}) #返回用户名或密码错误信息
+                return render(request,"login/login.html",{"login_other_error":warn_login_str}) #返回用户名或密码错误信息
             else:
                 return render(request,"main/main.html") #登录成功，进入主界面
         else:
