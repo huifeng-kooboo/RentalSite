@@ -1,3 +1,4 @@
+#这个模块主要是数据库模块，用于数据库的数据类型设计
 from django.db import models
 
 #用户登录
