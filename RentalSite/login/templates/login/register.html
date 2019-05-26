@@ -21,7 +21,7 @@
             <div class="container">
                 <div class="signup-content">
                     <form method="POST" id="signup-form" class="signup-form">
-                        {% csrf_token %}
+                        {% csrf_token %} <!--Django表单界面必加，用于安全认证-->
                         <h2 class="form-title">Create account</h2>
                         <div class="form-group">
                             <input type="text" class="form-input" name="username" id="name" placeholder="手机号"/>

@@ -17,6 +17,7 @@ def login(request):
                 warn_login_str = "用户名或密码错误"
                 return render(request,"login/login.html",{"login_other_error":warn_login_str}) #返回用户名或密码错误信息
             else:
+                #记录用户登录信息
                 initParams()
                 setLoginInfo("flag_login","1")
                 setLoginInfo("username",username)
@@ -52,7 +53,7 @@ def register(request):
 #主界面
 def main(request):
     username = getLoginInfo("username")
-    #当未登录账号
+    #当未登录账号时，返回错误界面
     if username == "":
         return render(request,"errormsg.html",{"error_msg":"当前账号未登录,请先登录"})
     return render(request,"main/main.html",{"UserName":username}) #返回主界面
