@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from.forms import LoginForm,RegisterForm
 from.models import UserLogin,UserRegister
@@ -16,7 +16,7 @@ def login(request):
                 warn_login_str = "用户名或密码错误"
                 return render(request,"login/login.html",{"login_other_error":warn_login_str}) #返回用户名或密码错误信息
             else:
-                return render(request,"main/main.html") #登录成功，进入主界面
+                return redirect("main") #进入主界面
         else:
             error = objPOST.errors
             return render(request,"login/login.html",{"login_error":error}) #返回验证有效错误信息
@@ -36,7 +36,7 @@ def register(request):
             if len(record) < 1:#当没注册时：添加账号信息
                 obj = UserRegister.objects.create(username=username,password=password,idcard=idcard,rentaddress=rentaddress)
                 obj_login = UserLogin.objects.create(username=username,password=password) #保存一份到登录数据库
-                return render(request,"login/login.html") #注册成功，进入登录界面
+                return redirect("login") #使用redirect方法，保证url跳转，而非只是界面跳转
             else:
                 warn_str = "当前用户已注册" #返回当前用户已注册信息到前端
                 return render(request,"login/register.html",{"warn_login":warn_str}) #返回当前账号已注册信息到前端界面,用js弹窗显示
