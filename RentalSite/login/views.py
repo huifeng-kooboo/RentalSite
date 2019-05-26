@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from.forms import LoginForm,RegisterForm
-from.models import UserLogin,UserRegister
+from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
 
 #用户登录
@@ -52,8 +52,33 @@ def register(request):
 
 #主界面
 def main(request):
+    #待完善部分,传送租房信息到前端界面（5.27做）
     username = getLoginInfo("username")
     #当未登录账号时，返回错误界面
     if username == "":
         return render(request,"errormsg.html",{"error_msg":"当前账号未登录,请先登录"})
     return render(request,"main/main.html",{"UserName":username}) #返回主界面
+
+
+#租户设置页面(前端先判断数据是否为空)
+def renterSetting(request):
+    #获取租户信息
+    rent_phone_number = getLoginInfo("username") #获取租户手机号
+    rent_info_list = Rental_Info.objects.filter(rent_phone_number=rent_phone_number) #找到对应的租户信息，传到前端
+    #租户部分，只负责一小部分
+    if request.POST:
+        return redirect("main") #进入主界面
+    return render(request,"rent/rentsetting.html") #进入租户设置界面
+
+#房东设置部分（房东这边先设置）
+def landloadSetting(request):
+    renter_List = UserRegister.objects.all() #获取所有用户信息
+    if request.POST:
+        return redirect("main") #进入主界面
+    return render(request,"landload/landloadsetting.html") #进入房东设置界面
+
+#价格费用界面由前端获取并计算
+def PaySetting(request):
+    if request.POST:
+        return render(request,"rent/rentpay.html")
+    return render(request,"rent/rentpay.html") #待完善

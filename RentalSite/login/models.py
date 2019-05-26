@@ -38,6 +38,7 @@ class LandloadInfo(models.Model):
 
 #租户部分
 class Rental_Info(models.Model):
+    rent_phone_number = models.CharField(max_length=20) #租户手机号，用于关联
     rent_Date = models.DateField() #租房日期
     rent_price = models.IntegerField() #房租
     electric_price = models.DecimalField(decimal_places=2,max_digits=7) #设置电费
