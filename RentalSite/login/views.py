@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from.forms import LoginForm,RegisterForm
 from.models import UserLogin,UserRegister
+from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
 
 #用户登录
 def login(request):
@@ -16,6 +17,9 @@ def login(request):
                 warn_login_str = "用户名或密码错误"
                 return render(request,"login/login.html",{"login_other_error":warn_login_str}) #返回用户名或密码错误信息
             else:
+                initParams()
+                setLoginInfo("flag_login","1")
+                setLoginInfo("username",username)
                 return redirect("main") #进入主界面
         else:
             error = objPOST.errors
@@ -47,4 +51,8 @@ def register(request):
 
 #主界面
 def main(request):
-    return render(request,"main/main.html") #返回主界面
+    username = getLoginInfo("username")
+    #当未登录账号
+    if username == "":
+        return render(request,"errormsg.html",{"error_msg":"当前账号未登录,请先登录"})
+    return render(request,"main/main.html",{"UserName":username}) #返回主界面
