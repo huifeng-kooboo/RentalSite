@@ -3,8 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
 </head>
 <body>
+<div class="headertwo clearfloat" id="header">
+    <p class="fl">房物信息</p>
+</div>
 
+<div id="main">
+    <form role="form" id ="frm">
+        <div class="form-group">
+            <p class="tit fl">姓名</p>
+            <input type="text" name="landload_name" id="" value="" placeholder="您的姓名" class="fl"/>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">手机号</p>
+            <input type="text" name="phone_number" id="" value="" placeholder="您的手机号码" class="fl"/>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">房东住址</p>
+            <input type="text" name="landload_address" id="" value="" placeholder="请选择房屋起租日期" class="fl day"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">租房时间</p>
+            <input type="text" name="rent_date" id="" value="" placeholder="请选择租房日期" class="fl day"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">设置房租</p>
+            <input type="text" name="rent_price" id="" value="" placeholder="房租价格" class="fl"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">设置水费</p>
+            <input type="text" name="water_price" id="" value="" placeholder="水费价格" class="fl"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">设置电费</p>
+            <input type="text" name="electric_price" id="" value="" placeholder="电费价格" class="fl"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">设置网费</p>
+            <input type="text" name="network_price" id="" value="" placeholder="网费价格" class="fl"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">钥匙数量</p>
+            <input type="text" name="" id="" value="" placeholder="钥匙数量" class="fl day"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">洗衣机情况</p>
+            <input type="text" name="" id="" value="" placeholder="是否有洗衣机" class="fl day"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">空调情况</p>
+            <input type="text" name="" id="" value="" placeholder="是否有空调" class="fl day"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+        <div class="form-group">
+            <p class="tit fl">租户手机号</p>
+            <input type="text" name="" id="" value="" placeholder="手机号" class="fl"/>
+            <i class="iconfont icon-arrowright fl"></i>
+        </div>
+    </form>
+     <button type="submit" id="btnform" class="btn btn-default">提交委托</button>
+</div>
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btnform").bind("click", function() {
+            //var landloadmsg = $("#frm");
+            var dataform =  document.getElementsByTagName('input');
+            var jsons = transformToJson(dataform);
+            var data = JSON.stringify(jsons);
+            alert(data);
+            function transformToJson(formData) {
+                    var obj = {}
+                    for (var i in formData) {
+
+                        //下标为的i的name做为json对象的key，下标为的i的value做为json对象的value
+                        obj[formData[i].name] = formData[i]['value'];
+                    }
+                    return obj;
+                }
+
+
+            $.ajax({
+                type: "POST",
+                url: "",
+                data: data,
+                success: function (data) {
+
+                }
+            });
+        })
+
+    });
+
+
+</script>
 </body>
 </html>
