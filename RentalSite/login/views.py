@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from.forms import LoginForm,RegisterForm
 from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
+from alipay import AliPay #调用支付宝接口
 
 #用户登录
 def login(request):
