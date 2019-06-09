@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from.forms import LoginForm,RegisterForm
 from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
+from alipay import AliPay #调用支付宝接口
 
 #用户登录
 def login(request):
@@ -51,13 +52,14 @@ def register(request):
     return render(request,"login/register.html") #在没有POST请求时，进入注册主界面
 
 #主界面
+#应该有两个界面，第一个界面是房屋照片以及房屋名字，点进去第二个界面可以看到它的具体房屋信息
 def main(request):
-    #待完善部分,传送租房信息到前端界面（5.27做）
     username = getLoginInfo("username")
+    house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
     #当未登录账号时，返回错误界面
     if username == "":
         return render(request,"errormsg.html",{"error_msg":"当前账号未登录,请先登录"})
-    return render(request,"main/main.html",{"UserName":username}) #返回主界面
+    return render(request,"main/main.html",{"UserName":username,"HouseInfo":house_info_list}) #返回主界面
 
 
 #租户设置页面(前端先判断数据是否为空)
@@ -67,15 +69,16 @@ def renterSetting(request):
     rent_info_list = Rental_Info.objects.filter(rent_phone_number=rent_phone_number) #找到对应的租户信息，传到前端
     #租户部分，只负责一小部分
     if request.POST:
+        #获取前端数据保存到前端界面当中
         return redirect("main") #进入主界面
-    return render(request,"rent/rentsetting.html") #进入租户设置界面
+    return render(request,"rent/rentsetting.html",{"rent_info":rent_info_list}) #进入租户设置界面
 
 #房东设置部分（房东这边先设置）
 def landloadSetting(request):
     renter_List = UserRegister.objects.all() #获取所有用户信息
     if request.POST:
         return redirect("main") #进入主界面
-    return render(request,"landload/landloadsetting.html") #进入房东设置界面
+    return render(request,"landload/landloadsetting.html",{'lanloadsetting':renter_List}) #进入房东设置界面
 
 #价格费用界面由前端获取并计算
 def PaySetting(request):
