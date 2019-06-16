@@ -40,7 +40,7 @@ def register(request):
             rentaddress = request.POST.get("rentaddress")
             record = UserRegister.objects.filter(username=username) #判断是否已经注册账号
             if len(record) < 1:#当没注册时：添加账号信息
-                obj = UserRegister.objects.create(username=username,password=password,idcard=idcard,rentaddress=rentaddress)
+                obj = UserRegister.objects.create(username=username,password=password,idcard=idcard,rentaddress=rentaddress) #保存到数据库当中
                 obj_login = UserLogin.objects.create(username=username,password=password) #保存一份到登录数据库
                 return redirect("login") #使用redirect方法，保证url跳转，而非只是界面跳转
             else:
@@ -48,7 +48,9 @@ def register(request):
                 return render(request,"login/register.html",{"warn_login":warn_str}) #返回当前账号已注册信息到前端界面,用js弹窗显示
         else:
             error = objPOST.errors
-            return render(request,"login/register.html",{"register_error":error}) #返回注册信息有误：根据表单验证情况
+            return render(request,"login/register.html",{"register_error":error})
+            #返回注册信息有误：根据表单验证情况
+            #前端错误信息表示方法{{register_error.username}}
     return render(request,"login/register.html") #在没有POST请求时，进入注册主界面
 
 #主界面
@@ -58,7 +60,7 @@ def main(request):
     house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
     #当未登录账号时，返回错误界面
     if username == "":
-        return render(request,"errormsg.html",{"error_msg":"当前账号未登录,请先登录"})
+        return redirect('ErrorInfo') #返回错误信息界面。重定向
     return render(request,"main/main.html",{"UserName":username,"HouseInfo":house_info_list}) #返回主界面
 
 
@@ -77,6 +79,10 @@ def renterSetting(request):
 def landloadSetting(request):
     renter_List = UserRegister.objects.all() #获取所有用户信息
     if request.POST:
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        idcard = request.POST.get("idcard")
+        rentaddress = request.POST.get("rentaddress")
         return redirect("main") #进入主界面
     return render(request,"landload/landloadsetting.html",{'lanloadsetting':renter_List}) #进入房东设置界面
 
@@ -85,3 +91,7 @@ def PaySetting(request):
     if request.POST:
         return render(request,"rent/rentpay.html")
     return render(request,"rent/rentpay.html") #待完善
+
+#错误信息界面
+def ErrorInfo(request):
+    return render(request,"errormsg.html") #直接返回错误界面

@@ -27,7 +27,7 @@
                             <input type="text" class="form-input" name="username" id="name" placeholder="手机号"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="password" id="password" placeholder="密码"/>
+                            <input type="password" class="form-input" name="password" id="password" placeholder="密码"/>
                             <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
@@ -39,9 +39,11 @@
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="注册"/>
                         </div>
+                        <h3>{{ warn_login }}</h3>
+                        <h3>{{ register_error.username }}</h3> <!--指定的用户名错误-->
                     </form>
                     <p class="loginhere">
-                         <a href="login" class="loginhere-link">用户登录</a>
+                         <a href="login" class="loginhere-link">用户登录</a> <!--直接跳转至登录界面-->
                     </p>
                 </div>
             </div>
@@ -52,5 +54,6 @@
     <!-- JS -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/js/register.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
