@@ -58,6 +58,7 @@ def register(request):
 def main(request):
     username = getLoginInfo("username")
     house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
+    #这个部分由房东在后台手动添加信息，前端负责展示信息即可。
     #当未登录账号时，返回错误界面
     if username == "":
         return redirect('ErrorInfo') #返回错误信息界面。重定向
@@ -79,11 +80,31 @@ def renterSetting(request):
 def landloadSetting(request):
     renter_List = UserRegister.objects.all() #获取所有用户信息
     if request.POST:
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        idcard = request.POST.get("idcard")
-        rentaddress = request.POST.get("rentaddress")
-        return redirect("main") #进入主界面
+        #获取界面输入的信息
+        landload_name = request.POST.get("landload_name")
+        phone_number = request.POST.get("phone_number")
+        landload_address = request.POST.get("landload_address")
+        rent_date = request.POST.get("rent_date")
+        rent_price = request.POST.get("rent_price")
+        water_price = request.POST.get("water_price")
+        electric_price = request.POST.get("electric_price")
+        network_price = request.POST.get("network_price")
+        key_number = request.POST.get("key_number")
+        air_condition = request.POST.get("air_condition")
+        washing_machine = request.POST.get("washing_machine")
+        rental_name = request.POST.get("rental_name") #用于关联到租户的那个表当中去
+        record = LandloadInfo.objects.filter(rental_name=rental_name)
+        if len(record) < 1:
+            obj = LandloadInfo.objects.create(landload_name=landload_name,phone_number=phone_number,landload_address=landload_address,rent_date=rent_date,
+                                              rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
+                                              key_number=key_number,air_condition=air_condition,washing_machine=washing_machine,
+                                              rental_name=rental_name)#保存信息到数据库当中
+            obj_rental = Rental_Info.objects.create(rent_phone_number=rental_name,rent_Date=rent_date,rent_price=rent_price,
+                                                    electric_price=electric_price,water_price=water_price,network_price=network_price,
+                                                    key_number=key_number,air_condition=air_condition,washing_machine=washing_machine) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
+            return redirect("main") #转到主界面
+        #保存到数据库中
+        return redirect("errormsg") #进入错误界面
     return render(request,"landload/landloadsetting.html",{'lanloadsetting':renter_List}) #进入房东设置界面
 
 #价格费用界面由前端获取并计算
