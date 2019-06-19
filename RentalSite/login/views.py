@@ -61,9 +61,8 @@ def main(request):
     #这个部分由房东在后台手动添加信息，前端负责展示信息即可。
     #当未登录账号时，返回错误界面
     if username == "":
-        return redirect('ErrorInfo') #返回错误信息界面。重定向
+        return redirect('ErrorInfo') #跳转至登录错误信息，说明账号未登录
     return render(request,"main/main.html",{"UserName":username,"HouseInfo":house_info_list}) #返回主界面
-
 
 #租户设置页面(前端先判断数据是否为空)
 def renterSetting(request):
@@ -104,7 +103,7 @@ def landloadSetting(request):
                                                     key_number=key_number,air_condition=air_condition,washing_machine=washing_machine) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
             return redirect("main") #转到主界面
         #保存到数据库中
-        return redirect("errormsg") #进入错误界面
+        return redirect("ErrorInfo") #进入错误界面
     return render(request,"landload/landloadsetting.html",{'lanloadsetting':renter_List}) #进入房东设置界面
 
 #价格费用界面由前端获取并计算
@@ -116,3 +115,7 @@ def PaySetting(request):
 #错误信息界面
 def ErrorInfo(request):
     return render(request,"errormsg.html") #直接返回错误界面
+
+#修改密码界面（待完善）
+def modifyPassword(request):
+    return render(request,"login/login.html") #定向到修改密码界面
