@@ -5,6 +5,10 @@ from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
 from alipay import AliPay #调用支付宝接口
 
+#添加检查错误信息功能（待完善）
+def checkErrorType():
+    return 0
+
 #用户登录
 def login(request):
     if request.method == "POST":
@@ -64,6 +68,26 @@ def main(request):
         return redirect('ErrorInfo') #跳转至登录错误信息，说明账号未登录
     return render(request,"main/main.html",{"UserName":username,"HouseInfo":house_info_list}) #返回主界面
 
+#实现房东添加房子照片等信息到前端界面中
+def UpdateHouseInfo(request):
+    #进来先判断是否已经登录
+    username = getLoginInfo("username")
+    if username == "":
+        return redirect('ErrorInfo') #定位到错误界面，说明并未登录
+    if request.POST:
+        #获取前端Post信息(缺少一个检查方法)
+        rental_name = request.POST.get('rental_name')
+        phone_number = request.POST.get('phone_number')
+        cur_address = request.POST.get('cur_address')
+        write_interview = request.POST.get('write_interview')
+        house_image = request.POST.get('house_image')
+        house_price = request.POST.get('house_price')
+        #保存到数据库当中去
+        obj = RentHouseInfo.objects.create(rental_name=rental_name,phone_number=phone_number,cur_address=cur_address,
+                                           write_interview=write_interview,house_image=house_image,house_price=house_price)
+        return redirect('main') #转回主界面
+    return render(request,"landload/addhouseinfo.html") #添加租房信息到数据库当中
+
 #租户设置页面(前端先判断数据是否为空)
 def renterSetting(request):
     #获取租户信息
@@ -118,4 +142,4 @@ def ErrorInfo(request):
 
 #修改密码界面（待完善）
 def modifyPassword(request):
-    return render(request,"login/login.html") #定向到修改密码界面
+    return render(request,"login/modifypassword.html") #定向到修改密码界面

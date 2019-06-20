@@ -9,5 +9,6 @@ urlpatterns=[
     path('renterSetting',views.renterSetting,name = 'renterSetting'), #租户设置界面
     path('PaySetting',views.PaySetting,name='PaySetting'), #支付设置界面
     path('ErrorInfo',views.ErrorInfo,name='ErrorInfo'), #返回错误信息界面
-    path('ModifyPassword',views.modifyPassword,name='modifyPassword') #修改密码界面
+    path('ModifyPassword',views.modifyPassword,name='modifyPassword'), #修改密码界面
+    path('UpdateHouseInfo',views.UpdateHouseInfo,name='UpdateHouseInfo') #更新租房信息
 ]
