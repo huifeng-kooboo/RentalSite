@@ -8,5 +8,11 @@
 <body>
 <h1>{{ UserName }}</h1>
 <h2>{{ HouseInfo }}</h2>
+<!--Django当中的遍历方式-->
+<!--把数据展示到前端去-->
+{% for house_list in HouseInfo %}
+   <h1> {{ house_list.cur_address }}</h1>
+
+{% endfor %}
 </body>
 </html>
