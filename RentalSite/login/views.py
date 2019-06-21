@@ -126,8 +126,17 @@ def landloadSetting(request):
                                                     electric_price=electric_price,water_price=water_price,network_price=network_price,
                                                     key_number=key_number,air_condition=air_condition,washing_machine=washing_machine) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
             return redirect("main") #转到主界面
-        #保存到数据库中
-        return redirect("ErrorInfo") #进入错误界面
+        #更新数据库
+        else:
+            LandloadInfo.objects.filter(rental_name=rental_name).update(landload_name=landload_name,phone_number=phone_number,landload_address=landload_address,rent_date=rent_date,
+                                              rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
+                                              key_number=key_number,air_condition=air_condition,washing_machine=washing_machine)
+            Rental_Info.objects.filter(rent_phone_number=rental_name).update(rent_Date=rent_date, rent_price=rent_price,
+                                       electric_price=electric_price, water_price=water_price,
+                                       network_price=network_price,
+                                       key_number=key_number, air_condition=air_condition,
+                                       washing_machine=washing_machine)
+            return redirect('main') #跳转至主界面
     return render(request,"landload/landloadsetting.html",{'lanloadsetting':renter_List}) #进入房东设置界面
 
 #价格费用界面由前端获取并计算
