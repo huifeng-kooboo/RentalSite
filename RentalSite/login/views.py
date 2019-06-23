@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from.forms import LoginForm,RegisterForm
 from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
+from django.views.decorators.csrf import csrf_exempt
 from alipay import AliPay #调用支付宝接口
+import json
 
 #添加检查错误信息功能（待完善）
 def checkErrorType():
@@ -33,6 +35,7 @@ def login(request):
     return render(request,"login/login.html") #登录界面
 
 #用户注册
+@csrf_exempt
 def register(request):
     if request.POST:
         objPOST = RegisterForm(request.POST)
@@ -49,6 +52,7 @@ def register(request):
                 return redirect("login") #使用redirect方法，保证url跳转，而非只是界面跳转
             else:
                 warn_str = "当前用户已注册" #返回当前用户已注册信息到前端
+                name_dict = {'warn_str':warn_str}
                 return render(request,"login/register.html",{"warn_login":warn_str}) #返回当前账号已注册信息到前端界面,用js弹窗显示
         else:
             error = objPOST.errors

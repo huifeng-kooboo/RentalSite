@@ -54,6 +54,28 @@
     <!-- JS -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/js/register.js"></script>
+    <script>
+        <!--实现ajax通信-->
+        $(document).ready(function () {
+            <!--提交post请求-->
+            <!--提示 #表示id-->
+            $("#submit").click(function () {
+                //alert("注册成功");
+                <!--post请求常用格式-->
+                <!--1.获取需要post的数据-->
+                var username = $("#name").val(); //获得用户名数据
+                var password = $("#password").val();
+                var idcard = $("#idcard").val();
+                var rentaddress = $("#rentaddress").val();
+                var submit_data = {"username":username,"password":password,"idcard":idcard,"rentaddress":rentaddress};
+                <!--2.使用post提交-->
+                $.post("login",submit_data,function(ret){
+                    alert("注册成功");
+                    <!--这边是执行成功完后实现的操作-->
+                })
+            })
+        })
+    </script>
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
