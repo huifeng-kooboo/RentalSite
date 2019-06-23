@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>租户注册</title>
-
     <!-- Font Icon -->
     <link rel="stylesheet" href="/static/fonts/material-icon/css/material-design-iconic-font.min.css">
-
     <!-- Main css -->
     <link rel="stylesheet" href="/static/css/register.css">
 </head>
 <body>
-
     <div class="main">
-
         <section class="signup">
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form">
+                  <!--  action="action="{% url 'login' %}""-->
+                    <form method="POST"   id="signup-form" class="signup-form">
                         {% csrf_token %} <!--Django表单界面必加，用于安全认证-->
                         <h2 class="form-title">租户注册</h2>
                         <div class="form-group">
@@ -37,45 +34,63 @@
                             <input  class="form-input" name="rentaddress" id="rentaddress" placeholder="租户地址"/>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="注册"/>
+                         <input type="submit" name="submit" id="submit" class="form-submit" value="注册"/>
+                            <!--<button  id="submit">登录 </button>-->
                         </div>
-                        <h3>{{ warn_login }}</h3>
-                        <h3>{{ register_error.username }}</h3> <!--指定的用户名错误-->
                     </form>
                     <p class="loginhere">
-                         <a href="login" class="loginhere-link">用户登录</a> <!--直接跳转至登录界面-->
+                         <a href="login" id="login_click" class="loginhere-link">用户登录</a> <!--直接跳转至登录界面，以及ajax跳转url-->
+                         <a href="register" id="register_click" class="loginhere-link" hidden>用户注册</a>
                     </p>
                 </div>
             </div>
         </section>
-
     </div>
-
     <!-- JS -->
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/js/register.js"></script>
+    <script src="/static/js/jquery.js"></script>
     <script>
-        <!--实现ajax通信-->
-        $(document).ready(function () {
-            <!--提交post请求-->
-            <!--提示 #表示id-->
-            $("#submit").click(function () {
-                //alert("注册成功");
-                <!--post请求常用格式-->
-                <!--1.获取需要post的数据-->
-                var username = $("#name").val(); //获得用户名数据
-                var password = $("#password").val();
-                var idcard = $("#idcard").val();
-                var rentaddress = $("#rentaddress").val();
-                var submit_data = {"username":username,"password":password,"idcard":idcard,"rentaddress":rentaddress};
-                <!--2.使用post提交-->
-                $.post("login",submit_data,function(ret){
-                    alert("注册成功");
-                    <!--这边是执行成功完后实现的操作-->
-                })
-            })
-        })
+        /*绑定submit方法*/
+        $('#submit').bind('click',function(){
+
+            <!--csrf认证添加，for ajax-->
+            $.ajaxSetup({
+             data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+
+            <!--获取前端输入数据-->
+            var username = $('#name').val();
+            var password = $('#password').val();
+            var idcard = $("#idcard").val();
+            var rentaddress = $('#rentaddress').val();
+            var post_data ={"username":username,"password":password,
+            "idcard":idcard,"rentaddress":rentaddress,};
+
+            <!--ajax请求-->
+            $.ajax({
+                url:'register',
+                type:'POST',
+                data : post_data, /*传递参数*/
+                dataType:"json",
+                success: function (data) {
+                var flag_href = data['flag_href'];
+                if (flag_href == "1") //1表示跳转，注册成功
+                {
+                    alert("用户注册成功");
+                    document.getElementById("login_click").click();<!--点击a标签，实现跳转url-->
+                }
+                /*表示有存在错误信息*/
+                else{
+                    var error_info = data['error_info']; //获取错误信息
+                    alert(error_info)//显示错误信息
+                    document.getElementById("register_click").click();<!--点击a标签，实现刷新界面，待完善，这个方法感觉不对-->
+                }
+            }
+});});
+
+
+
     </script>
+   <!-- <script src="/static/js/register.js"></script>-->
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

@@ -1,8 +1,31 @@
+''' objPOST = RegisterForm(request.POST)
+ ret = objPOST.is_valid() #先进行表单的验证；判断格式等问题是否有出错
+ if ret:#表单有效时候
+     username = request.POST.get("username")
+     password = request.POST.get("password")
+     idcard = request.POST.get("idcard")
+     rentaddress = request.POST.get("rentaddress")
+     record = UserRegister.objects.filter(username=username) #判断是否已经注册账号
+     if len(record) < 1:#当没注册时：添加账号信息
+         obj = UserRegister.objects.create(username=username,password=password,idcard=idcard,rentaddress=rentaddress) #保存到数据库当中
+         obj_login = UserLogin.objects.create(username=username,password=password) #保存一份到登录数据库
+         return redirect("login") #使用redirect方法，保证url跳转，而非只是界面跳转
+     else:
+         warn_str = "当前用户已注册" #返回当前用户已注册信息到前端
+         return render(request,"login/register.html",{"warn_login":warn_str}) #返回当前账号已注册信息到前端界面,用js弹窗显示
+ else:
+     error = objPOST.errors
+     return render(request,"login/register.html",{"register_error":error})
+     #返回注册信息有误：根据表单验证情况
+     #前端错误信息表示方法{{register_error.username}}
+     '''
+
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
 from.forms import LoginForm,RegisterForm
 from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.csrf import csrf_exempt
 from alipay import AliPay #调用支付宝接口
 import json
@@ -34,32 +57,38 @@ def login(request):
             return render(request,"login/login.html",{"login_error":error}) #返回验证有效错误信息
     return render(request,"login/login.html") #登录界面
 
+@ensure_csrf_cookie
 #用户注册
-@csrf_exempt
 def register(request):
     if request.POST:
+        flag_href = 0  #flag_href 用于跳转url。0表示保持register界面，1表示跳转到login界面
+        error_info = '' #默认错误信息为空
+        data = {'flag_href':flag_href,
+                'error_info':error_info,}
         objPOST = RegisterForm(request.POST)
-        ret = objPOST.is_valid() #先进行表单的验证；判断格式等问题是否有出错
-        if ret:#表单有效时候
+        ret = objPOST.is_valid()  # 先进行表单的验证；判断格式等问题是否有出错
+        if ret:  # 表单有效时候
             username = request.POST.get("username")
             password = request.POST.get("password")
             idcard = request.POST.get("idcard")
             rentaddress = request.POST.get("rentaddress")
-            record = UserRegister.objects.filter(username=username) #判断是否已经注册账号
-            if len(record) < 1:#当没注册时：添加账号信息
-                obj = UserRegister.objects.create(username=username,password=password,idcard=idcard,rentaddress=rentaddress) #保存到数据库当中
-                obj_login = UserLogin.objects.create(username=username,password=password) #保存一份到登录数据库
-                return redirect("login") #使用redirect方法，保证url跳转，而非只是界面跳转
+            record = UserRegister.objects.filter(username=username)  # 判断是否已经注册账号
+            if len(record) < 1:  # 当没注册时：添加账号信息
+                obj = UserRegister.objects.create(username=username, password=password, idcard=idcard,
+                                                  rentaddress=rentaddress)  # 保存到数据库当中
+                obj_login = UserLogin.objects.create(username=username, password=password)  # 保存一份到登录数据库
+                flag_href_demo = 1 #跳转到login界面
+                data['flag_href'] = flag_href_demo
+                return JsonResponse(data) # 使用redirect方法，保证url跳转，而非只是界面跳转
             else:
-                warn_str = "当前用户已注册" #返回当前用户已注册信息到前端
-                name_dict = {'warn_str':warn_str}
-                return render(request,"login/register.html",{"warn_login":warn_str}) #返回当前账号已注册信息到前端界面,用js弹窗显示
+                warn_str = "当前用户已注册"  # 返回当前用户已注册信息到前端
+                data['error_info'] = warn_str
+                return JsonResponse(data)
         else:
             error = objPOST.errors
-            return render(request,"login/register.html",{"register_error":error})
-            #返回注册信息有误：根据表单验证情况
-            #前端错误信息表示方法{{register_error.username}}
-    return render(request,"login/register.html") #在没有POST请求时，进入注册主界面
+            data['error_info'] = error
+            return JsonResponse(data)
+    return render(request,"login/register.html")
 
 #主界面
 #应该有两个界面，第一个界面是房屋照片以及房屋名字，点进去第二个界面可以看到它的具体房屋信息
