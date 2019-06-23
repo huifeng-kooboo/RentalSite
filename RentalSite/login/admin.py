@@ -1,9 +1,9 @@
 from django.contrib import admin
-from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
+from.models import UserLogin,UserRegister,RentalInfo,RentHouseInfo,LandloadInfo
 
 #注册模型到后台，可以直接在后台进行增删改查
 admin.site.register(UserLogin)
 admin.site.register(UserRegister)
 admin.site.register(RentHouseInfo)
-admin.site.register(Rental_Info)
+admin.site.register(RentalInfo)
 admin.site.register(LandloadInfo)

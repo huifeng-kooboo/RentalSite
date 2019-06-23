@@ -1,29 +1,7 @@
-''' objPOST = RegisterForm(request.POST)
- ret = objPOST.is_valid() #先进行表单的验证；判断格式等问题是否有出错
- if ret:#表单有效时候
-     username = request.POST.get("username")
-     password = request.POST.get("password")
-     idcard = request.POST.get("idcard")
-     rentaddress = request.POST.get("rentaddress")
-     record = UserRegister.objects.filter(username=username) #判断是否已经注册账号
-     if len(record) < 1:#当没注册时：添加账号信息
-         obj = UserRegister.objects.create(username=username,password=password,idcard=idcard,rentaddress=rentaddress) #保存到数据库当中
-         obj_login = UserLogin.objects.create(username=username,password=password) #保存一份到登录数据库
-         return redirect("login") #使用redirect方法，保证url跳转，而非只是界面跳转
-     else:
-         warn_str = "当前用户已注册" #返回当前用户已注册信息到前端
-         return render(request,"login/register.html",{"warn_login":warn_str}) #返回当前账号已注册信息到前端界面,用js弹窗显示
- else:
-     error = objPOST.errors
-     return render(request,"login/register.html",{"register_error":error})
-     #返回注册信息有误：根据表单验证情况
-     #前端错误信息表示方法{{register_error.username}}
-     '''
-
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
 from.forms import LoginForm,RegisterForm
-from.models import UserLogin,UserRegister,Rental_Info,RentHouseInfo,LandloadInfo
+from.models import UserLogin,UserRegister,RentalInfo,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.csrf import csrf_exempt
@@ -77,16 +55,21 @@ def register(request):
                 obj = UserRegister.objects.create(username=username, password=password, idcard=idcard,
                                                   rentaddress=rentaddress)  # 保存到数据库当中
                 obj_login = UserLogin.objects.create(username=username, password=password)  # 保存一份到登录数据库
-                flag_href_demo = 1 #跳转到login界面
-                data['flag_href'] = flag_href_demo
-                return JsonResponse(data) # 使用redirect方法，保证url跳转，而非只是界面跳转
+                flag_href_login = 1 #跳转到login界面
+                data['flag_href'] = flag_href_login
+                return JsonResponse(data) # 使用JsonResponse方法，传递json字符串到前端
             else:
                 warn_str = "当前用户已注册"  # 返回当前用户已注册信息到前端
                 data['error_info'] = warn_str
                 return JsonResponse(data)
         else:
             error = objPOST.errors
-            data['error_info'] = error
+            error_tips = ''
+            #error是字典形式，以下是字典的遍历
+            for key in error:
+                error_tips += error[key] #保存错误信息
+            #遍历表单错误,保存到字符串数组error_tips
+            data['error_info'] = error_tips
             return JsonResponse(data)
     return render(request,"login/register.html")
 
@@ -124,8 +107,8 @@ def UpdateHouseInfo(request):
 #租户设置页面(前端先判断数据是否为空)
 def renterSetting(request):
     #获取租户信息
-    rent_phone_number = getLoginInfo("username") #获取租户手机号
-    rent_info_list = Rental_Info.objects.filter(rent_phone_number=rent_phone_number) #找到对应的租户信息，传到前端
+    rent_phone = getLoginInfo("username") #获取租户手机号
+    rent_info_list = RentalInfo.objects.filter(rent_phone=rent_phone) #找到对应的租户信息，传到前端
     #租户部分，只负责一小部分
     if request.POST:
         #获取前端数据保存到前端界面当中
@@ -155,7 +138,7 @@ def landloadSetting(request):
                                               rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
                                               key_number=key_number,air_condition=air_condition,washing_machine=washing_machine,
                                               rental_name=rental_name)#保存信息到数据库当中
-            obj_rental = Rental_Info.objects.create(rent_phone_number=rental_name,rent_Date=rent_date,rent_price=rent_price,
+            obj_rental = RentalInfo.objects.create(rent_phone=rental_name,rent_Date=rent_date,rent_price=rent_price,
                                                     electric_price=electric_price,water_price=water_price,network_price=network_price,
                                                     key_number=key_number,air_condition=air_condition,washing_machine=washing_machine) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
             return redirect("main") #转到主界面
@@ -164,7 +147,7 @@ def landloadSetting(request):
             LandloadInfo.objects.filter(rental_name=rental_name).update(landload_name=landload_name,phone_number=phone_number,landload_address=landload_address,rent_date=rent_date,
                                               rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
                                               key_number=key_number,air_condition=air_condition,washing_machine=washing_machine)
-            Rental_Info.objects.filter(rent_phone_number=rental_name).update(rent_Date=rent_date, rent_price=rent_price,
+            RentalInfo.objects.filter(rent_phone=rental_name).update(rent_Date=rent_date, rent_price=rent_price,
                                        electric_price=electric_price, water_price=water_price,
                                        network_price=network_price,
                                        key_number=key_number, air_condition=air_condition,

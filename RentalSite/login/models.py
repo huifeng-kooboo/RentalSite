@@ -38,8 +38,8 @@ class LandloadInfo(models.Model):
     rental_name = models.CharField(max_length=20) #租户手机号（相当于选择租户，设置完进行绑定）
 
 #租户部分
-class Rental_Info(models.Model):
-    rent_phone_number = models.CharField(max_length=20) #租户手机号，用于关联
+class RentalInfo(models.Model):
+    rent_phone = models.CharField(max_length=20) #租户手机号，用于关联
     rent_Date = models.DateField() #租房日期
     rent_price = models.IntegerField() #房租
     electric_price = models.DecimalField(decimal_places=2,max_digits=7) #设置电费
@@ -48,5 +48,5 @@ class Rental_Info(models.Model):
     key_number = models.IntegerField() #钥匙数量
     air_condition = models.BooleanField() #是否有空调
     washing_machine = models.BooleanField() #是否有洗衣机
-    pay_date = models.DateField()#这个是用户设置部分
+    pay_date = models.DateField()#这个是用户设置部分，支付日期
 

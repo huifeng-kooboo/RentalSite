@@ -13,7 +13,6 @@
 <body>
     <div class="main">
         <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
                   <!--  action="action="{% url 'login' %}""-->
@@ -35,7 +34,6 @@
                         </div>
                         <div class="form-group">
                          <input type="submit" name="submit" id="submit" class="form-submit" value="注册"/>
-                            <!--<button  id="submit">登录 </button>-->
                         </div>
                     </form>
                     <p class="loginhere">
@@ -52,7 +50,7 @@
         /*绑定submit方法*/
         $('#submit').bind('click',function(){
 
-            <!--csrf认证添加，for ajax-->
+            <!--django csrf认证添加，for ajax-->
             $.ajaxSetup({
              data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
             });
@@ -68,10 +66,10 @@
             <!--ajax请求-->
             $.ajax({
                 url:'register',
-                type:'POST',
-                data : post_data, /*传递参数*/
-                dataType:"json",
-                success: function (data) {
+                type:'POST',   //方法：例如Post/get等等
+                data : post_data, /*客户端发送给服务器传递的参数*/
+                dataType:"json",  /*参数数据类型*/
+                success: function (data) {  //此处的data表示服务器传过来的json数据
                 var flag_href = data['flag_href'];
                 if (flag_href == "1") //1表示跳转，注册成功
                 {
@@ -85,12 +83,9 @@
                     document.getElementById("register_click").click();<!--点击a标签，实现刷新界面，待完善，这个方法感觉不对-->
                 }
             }
-});});
-
-
-
+            });
+        });
     </script>
-   <!-- <script src="/static/js/register.js"></script>-->
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
