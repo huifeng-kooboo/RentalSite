@@ -7,12 +7,16 @@
 </head>
 <body>
 <h1>{{ UserName }}</h1>
-<h2>{{ HouseInfo }}</h2>
-<!--Django当中的遍历方式-->
+
+<!--Django当中的遍历数据的方式-->
 <!--把数据展示到前端去-->
 {% for house_list in HouseInfo %}
-   <h1> {{ house_list.cur_address }}</h1>
-
+   <h1> {{ house_list.cur_address }}</h1> <!--房子地址-->
+    <h2>{{ house_list.house_price }}</h2> <!--房价-->
+    <h3>{{ house_list.phone_number }}</h3><!--联系电话-->
+    <h3>{{ house_list.rental_name }}</h3> <!--房主姓名-->
+    <h3>{{ house_list.write_interview }}</h3> <!--房屋介绍-->
+    <h3>{{ house_list.house_image }}</h3> <!--房子照片-->
 {% endfor %}
 </body>
 </html>

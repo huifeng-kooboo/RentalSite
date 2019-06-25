@@ -189,3 +189,7 @@ def ErrorInfo(request):
 #修改密码界面（待完善）
 def modifyPassword(request):
     return render(request,"login/modifypassword.html") #定向到修改密码界面
+
+#用户信息个人设置部分
+def personInfo(request):
+    return render(request,"main/personsetting.html")
