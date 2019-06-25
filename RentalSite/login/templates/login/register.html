@@ -65,7 +65,7 @@
 
             <!--ajax请求-->
             $.ajax({
-                url:'register',
+                url:'/login/register', //url指的是相对于本机服务器，请求的uri位置
                 type:'POST',   //方法：例如Post/get等等
                 data : post_data, /*客户端发送给服务器传递的参数*/
                 dataType:"json",  /*参数数据类型*/

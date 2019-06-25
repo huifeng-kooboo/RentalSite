@@ -13,30 +13,46 @@ def checkErrorType():
     return 0
 
 #用户登录
+@ensure_csrf_cookie
 def login(request):
     if request.method == "POST":
         objPOST = LoginForm(request.POST) #验证表单
         ret = objPOST.is_valid() #判断是否有效
+        flag_href = 0 #0不跳转，1跳转
+        error_info = '' #默认情况下错误信息为空
+        postdata={
+            'flag_href':flag_href,
+            'error_info':error_info,
+        }
         if ret: #表单有效时候
             username = request.POST.get("username")
             password = request.POST.get("password")
             record = UserLogin.objects.filter(username=username,password=password) #获取数据库数据
             if len(record) < 1: #没找到数据
                 warn_login_str = "用户名或密码错误"
-                return render(request,"login/login.html",{"login_other_error":warn_login_str}) #返回用户名或密码错误信息
+                postdata['error_info'] = warn_login_str
+                return JsonResponse(postdata) #返回用户名或密码错误信息
             else:
                 #记录用户登录信息
                 initParams()
                 setLoginInfo("flag_login","1")
                 setLoginInfo("username",username)
-                return redirect("main") #进入主界面
+                main_href = 1
+                postdata['flag_href'] = main_href
+                return JsonResponse(postdata) #进入主界面
         else:
             error = objPOST.errors
-            return render(request,"login/login.html",{"login_error":error}) #返回验证有效错误信息
+            error_tips = ''
+            #error是字典形式，以下是字典的遍历
+            for key in error:
+                error_tips += error[key] #保存错误信息
+            #遍历表单错误,保存到字符串数组error_tips
+            postdata['error_info'] = error_tips
+            return JsonResponse(postdata)
     return render(request,"login/login.html") #登录界面
 
-@ensure_csrf_cookie
 #用户注册
+@ensure_csrf_cookie
 def register(request):
     if request.POST:
         flag_href = 0  #flag_href 用于跳转url。0表示保持register界面，1表示跳转到login界面

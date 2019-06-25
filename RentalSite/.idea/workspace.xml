@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4c6e3997-ea5f-4a33-b4fc-e1ce08b227ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
     </list>
@@ -21,28 +20,38 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/login/views.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="774">
+                    <caret line="47" column="39" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="39" />
+                    <folding>
+                      <element signature="e#3652#4535#0" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/login/views.py">
+        <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
+            <state relative-caret-position="362">
+              <caret line="96" column="17" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
               <folding>
-                <element signature="e#1036#1080#0" expanded="true" />
-                <element signature="e#1575#2510#0" />
-                <element signature="e#4117#4446#0" />
-                <element signature="e#4503#5386#0" />
+                <element signature="n#head#0;n#html#0;n#!!top" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files/Python37/Lib/site-packages/django/forms/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="176" column="8" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -80,7 +89,6 @@
         <option value="$PROJECT_DIR$/login/templates/rent/rentpay.html" />
         <option value="$PROJECT_DIR$/login/templates/rent/rentsetting.html" />
         <option value="$PROJECT_DIR$/static/js/login.js" />
-        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
         <option value="$PROJECT_DIR$/login/templates/errormsg.html" />
         <option value="$PROJECT_DIR$/login/templates/landload/landloadsetting.html" />
         <option value="$PROJECT_DIR$/login/templates/login/modifypassword.html" />
@@ -88,16 +96,17 @@
         <option value="$PROJECT_DIR$/login/templates/main/main.html" />
         <option value="$PROJECT_DIR$/static/js/register.js" />
         <option value="$PROJECT_DIR$/login/urls.py" />
-        <option value="$PROJECT_DIR$/login/templates/login/register.html" />
         <option value="$PROJECT_DIR$/login/admin.py" />
         <option value="$PROJECT_DIR$/login/models.py" />
+        <option value="$PROJECT_DIR$/login/templates/login/register.html" />
+        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
         <option value="$PROJECT_DIR$/login/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="795" />
-    <option name="y" value="60" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="361" />
+    <option name="y" value="163" />
     <option name="width" value="1393" />
     <option name="height" value="724" />
   </component>
@@ -107,7 +116,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -118,6 +126,19 @@
             <path>
               <item name="RentalSite" type="b2602c69:ProjectViewProjectNode" />
               <item name="RentalSite" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RentalSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RentalSite" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RentalSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RentalSite" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -134,6 +155,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -268,7 +290,8 @@
       <workItem from="1561163003333" duration="1993000" />
       <workItem from="1561244589684" duration="16472000" />
       <workItem from="1561279128445" duration="15324000" />
-      <workItem from="1561327289870" duration="2531000" />
+      <workItem from="1561327289870" duration="2941000" />
+      <workItem from="1561495038705" duration="1937000" />
     </task>
     <task id="LOCAL-00001" summary="提交到页面当中">
       <created>1561067643042</created>
@@ -288,18 +311,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79624000" />
+    <option name="totallyTimeSpent" value="81971000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="795" y="60" width="1393" height="724" extended-state="0" />
+    <frame x="10" y="131" width="1393" height="724" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15453863" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15603901" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49737436" weight="0.2457627" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49137285" visible="true" weight="0.2542373" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.4968017" visible="true" weight="0.2451193" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49062267" visible="true" weight="0.2542373" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -307,7 +330,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.5086272" side_tool="true" visible="true" weight="0.2542373" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50937736" side_tool="true" visible="true" weight="0.2542373" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49840087" weight="0.21041214" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -465,13 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-240">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login/templates/rent/rentpay.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -541,13 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/login/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1896">
-          <caret line="79" column="21" lean-forward="true" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -565,6 +574,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="9122" column="4" selection-start-line="9122" selection-start-column="4" selection-end-line="9122" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://C:/Program Files/Python37/Lib/site-packages/django/forms/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -572,15 +588,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/login/templates/login/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="39" selection-start-line="39" selection-end-line="40" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="96" column="17" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/login/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
+        <state relative-caret-position="774">
+          <caret line="47" column="39" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="39" />
           <folding>
-            <element signature="e#1036#1080#0" expanded="true" />
-            <element signature="e#1575#2510#0" />
-            <element signature="e#4117#4446#0" />
-            <element signature="e#4503#5386#0" />
+            <element signature="e#3652#4535#0" />
           </folding>
         </state>
       </provider>
