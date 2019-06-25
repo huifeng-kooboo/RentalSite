@@ -105,9 +105,9 @@ def UpdateHouseInfo(request):
     #进来先判断是否已经登录
     username = getLoginInfo("username")
     if username == "":
-        return redirect('ErrorInfo') #定位到错误界面，说明并未登录
+       return redirect('ErrorInfo') #定位到错误界面，说明并未登录
     if request.POST:
-        #获取前端Post信息(缺少一个检查方法)
+        #获取前端传送过来的值
         rental_name = request.POST.get('rental_name')
         phone_number = request.POST.get('phone_number')
         cur_address = request.POST.get('cur_address')
@@ -177,8 +177,13 @@ def PaySetting(request):
         return render(request,"rent/rentpay.html")
     return render(request,"rent/rentpay.html") #待完善
 
-#错误信息界面
+#错误信息界面：所有错误界面都放在这
 def ErrorInfo(request):
+    #获取用户是否登录
+    username = getLoginInfo("username")
+    if username == "":
+        error_info = '当前用户未登录'
+        return render(request, "errormsg.html", {'error_info': error_info})
     return render(request,"errormsg.html") #直接返回错误界面
 
 #修改密码界面（待完善）
