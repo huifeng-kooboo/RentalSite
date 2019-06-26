@@ -192,4 +192,18 @@ def modifyPassword(request):
 
 #用户信息个人设置部分
 def personInfo(request):
-    return render(request,"main/personsetting.html")
+    cur_username = getLoginInfo("username") #获得登录的用户名
+    if cur_username == "":
+        error_info = '当前用户未登录'
+        return render(request, "errormsg.html", {'error_info': error_info})
+    else:
+        personalData = UserRegister.objects.filter(username=cur_username)  # 获取指定数据[0]表示取第一个数据
+        if request.POST:
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+            idcard = request.POST.get("idcard")
+            rentaddress = request.POST.get("rentaddress")
+            UserRegister.objects.filter(username=username).update(password=password,idcard=idcard,rentaddress=rentaddress)
+            UserLogin.objects.filter(username=username).update(password=password)
+            return redirect('main') #转到主界面
+        return render(request, "main/personsetting.html",{'personal':personalData[0]})
