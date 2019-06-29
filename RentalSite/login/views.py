@@ -89,13 +89,11 @@ def register(request):
             return JsonResponse(data)
     return render(request,"login/register.html")
 
-#主界面
-#应该有两个界面，第一个界面是房屋照片以及房屋名字，点进去第二个界面可以看到它的具体房屋信息
+#主界面应该有两个界面，第一个界面是房屋照片以及房屋名字，点进去第二个界面可以看到它的具体房屋信息
 def main(request):
     username = getLoginInfo("username")
     house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
-    #这个部分由房东在后台手动添加信息，前端负责展示信息即可。
-    #当未登录账号时，返回错误界面
+    #这个部分由房东在后台手动添加信息，前端负责展示信息即可。当未登录账号时，返回错误界面
     if username == "":
         return redirect('ErrorInfo') #跳转至登录错误信息，说明账号未登录
     return render(request,"main/main.html",{"UserName":username,"HouseInfo":house_info_list}) #返回主界面
@@ -155,19 +153,18 @@ def landloadSetting(request):
                                               key_number=key_number,air_condition=air_condition,washing_machine=washing_machine,
                                               rental_name=rental_name)#保存信息到数据库当中
             obj_rental = RentalInfo.objects.create(rent_phone=rental_name,rent_Date=rent_date,rent_price=rent_price,
-                                                    electric_price=electric_price,water_price=water_price,network_price=network_price,
-                                                    key_number=key_number,air_condition=air_condition,washing_machine=washing_machine) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
+                                                  electric_price=electric_price,water_price=water_price,network_price=network_price,
+                                                  key_number=key_number,air_condition=air_condition,washing_machine=washing_machine) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
             return redirect("main") #转到主界面
         #更新数据库
         else:
             LandloadInfo.objects.filter(rental_name=rental_name).update(landload_name=landload_name,phone_number=phone_number,landload_address=landload_address,rent_date=rent_date,
-                                              rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
-                                              key_number=key_number,air_condition=air_condition,washing_machine=washing_machine)
+                                        rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
+                                        key_number=key_number,air_condition=air_condition,washing_machine=washing_machine)
             RentalInfo.objects.filter(rent_phone=rental_name).update(rent_Date=rent_date, rent_price=rent_price,
-                                       electric_price=electric_price, water_price=water_price,
-                                       network_price=network_price,
-                                       key_number=key_number, air_condition=air_condition,
-                                       washing_machine=washing_machine)
+                                     electric_price=electric_price, water_price=water_price,
+                                     network_price=network_price,key_number=key_number, air_condition=air_condition,
+                                     washing_machine=washing_machine)
             return redirect('main') #跳转至主界面
     return render(request,"landload/landloadsetting.html",{'lanloadsetting':renter_List}) #进入房东设置界面
 
@@ -186,7 +183,8 @@ def ErrorInfo(request):
         return render(request, "errormsg.html", {'error_info': error_info})
     return render(request,"errormsg.html") #直接返回错误界面
 
-#修改密码界面（待完善）
+#修改密码界面
+#待定，主要是因为个人信息设置部分已经可以实现修改密码的需求了
 def modifyPassword(request):
     return render(request,"login/modifypassword.html") #定向到修改密码界面
 
@@ -199,11 +197,11 @@ def personInfo(request):
     else:
         personalData = UserRegister.objects.filter(username=cur_username)  # 获取指定数据[0]表示取第一个数据
         if request.POST:
-            username = request.POST.get("username")
+            #获取前端输入的数据,其中password和rentaddress需要判断是否符合要求
             password = request.POST.get("password")
-            idcard = request.POST.get("idcard")
             rentaddress = request.POST.get("rentaddress")
-            UserRegister.objects.filter(username=username).update(password=password,idcard=idcard,rentaddress=rentaddress)
-            UserLogin.objects.filter(username=username).update(password=password)
+            #更新数据库(只针对输入的值disabled获取的值为null)
+            UserRegister.objects.filter(username=cur_username).update(password=password,rentaddress=rentaddress)
+            UserLogin.objects.filter(username=cur_username).update(password=password)
             return redirect('main') #转到主界面
         return render(request, "main/personsetting.html",{'personal':personalData[0]})

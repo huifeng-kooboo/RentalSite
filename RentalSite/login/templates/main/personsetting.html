@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V4</title>
+	<title>个人信息设置</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -39,25 +39,25 @@
 
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
 					<span class="label-input100">姓名</span>
-					<input class="input100" type="text" name="username" placeholder="Enter your name" value="{{ personal.username }}" disabled="disabled">
+					<input class="input100" type="text" name="username" value="{{ personal.username }}" disabled="disabled">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">密码</span>
-					<input class="input100" type="password" name="password" value="{{ personal.password }}" placeholder="Enter your new password">
+					<input class="input100" type="password" name="password" value="{{ personal.password }}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">身份证</span>
-					<input class="input100" type="text" name="idcard" placeholder="身份证号" value="{{ personal.idcard }}" disabled="disabled">
+					<input class="input100" type="text" name="idcard"  value="{{ personal.idcard }}" disabled="disabled">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">住址</span>
-					<input class="input100" type="text" name="rentaddress" value="{{ personal.rentaddress }} placeholder="Enter your new rentaddress">
+					<input class="input100" type="text" name="rentaddress"  value="{{ personal.rentaddress }}" >
 					<span class="focus-input100"></span>
 				</div>
 
