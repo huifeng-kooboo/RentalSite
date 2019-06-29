@@ -8,3 +8,6 @@ Environment:Python3.7.3 Django2.1.1
 
 How to start
 
+
+`print hello world`
+
