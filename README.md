@@ -1,10 +1,10 @@
-# RentalSite
-Using django to build a site
+# RentalSite Version 1.0.0
 
-#author:rdg,ytouch
+Building Tools: PyCharm
 
-#how to use it
-1.install python3.7.3
-2.pip install django 
-3.install PyCharm
-4.run cmd "python manage.py runserver"
+CodingLanguange:Python,Html,Css,Javascript
+
+Environment:Python3.7.3 Django2.1.1
+
+How to start
+
