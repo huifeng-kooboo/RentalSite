@@ -17,8 +17,8 @@ CodingLanguange:Python,Html,Css,Javascript
 
 Environment:Python3.7.3 Django2.1.1
 
-How to start
+## How to start it
 
+### ```python manage.py runserver ```
 
-`print hello world`
 
