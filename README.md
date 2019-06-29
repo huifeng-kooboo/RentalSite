@@ -1,4 +1,15 @@
-# RentalSite Version 1.0.0
+# ProjectName: RentalSite
+
+## Interview:
+
+### ``` 这个后面补充 ，差介绍项目 ```
+
+## Coding Language:
+### Python,Html,Css,Javascript
+
+## Install Environment:
+
+### [Pycharm](https://www.jetbrains.com/pycharm/)
 
 Building Tools: PyCharm
 
