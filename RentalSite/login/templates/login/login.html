@@ -1,3 +1,4 @@
+<!--登录界面-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,7 +100,7 @@
             var post_data ={"username":username,"password":password,};
             <!--ajax请求-->
             $.ajax({
-                url:'/login/login', //url指的是相对于本机服务器，请求的uri位置
+                url:'/login/login  ', //url指的是相对于本机服务器，请求的uri位置
                 type:'POST',   //方法：例如Post/get等等
                 data : post_data, /*客户端发送给服务器传递的参数*/
                 dataType:"json",  /*参数数据类型*/
@@ -113,7 +114,7 @@
                 /*表示有存在错误信息*/
                 else{
                     var error_info = data['error_info']; //获取错误信息
-                    alert(error_info)//显示错误信息
+                    alert(error_info) //显示错误信息
                     document.getElementById("login_click").click();<!--点击a标签，实现刷新界面，待完善，这个方法感觉不对-->
                 }
             }
