@@ -205,3 +205,7 @@ def personInfo(request):
             UserLogin.objects.filter(username=cur_username).update(password=password)
             return redirect('main') #转到主界面
         return render(request, "main/personsetting.html",{'personal':personalData[0]})
+
+#主要是用于展示房屋详细信息页面
+def proInfo(request):
+    return render(request,'main/proinfo.html')

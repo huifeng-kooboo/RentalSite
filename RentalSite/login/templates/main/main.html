@@ -1,22 +1,80 @@
-<!--租房网主页面，即租房信息展示，相关信息参照models.py中RentHouseInfo部分 简单的用div模块显示即可-->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>租房网</title>
-</head>
-<body>
-<h1>{{ UserName }}</h1>
 
-<!--Django当中的遍历数据的方式-->
-<!--把数据展示到前端去-->
-{% for house_list in HouseInfo %}
-   <h1> {{ house_list.cur_address }}</h1> <!--房子地址-->
-    <h2>{{ house_list.house_price }}</h2> <!--房价-->
-    <h3>{{ house_list.phone_number }}</h3><!--联系电话-->
-    <h3>{{ house_list.rental_name }}</h3> <!--房主姓名-->
-    <h3>{{ house_list.write_interview }}</h3> <!--房屋介绍-->
-    <h3>{{ house_list.house_image }}</h3> <!--房子照片-->
-{% endfor %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="order by dede58.com/" /><title>租房主界面</title>
+<link rel="shortcut icon" href="/static/main/images/favicon.ico" />
+<link type="text/css" href="/static/main/css/css.css" rel="stylesheet" />
+<script type="text/javascript" src="/static/main/js/jquery.js"></script>
+<script type="text/javascript" src="/static/main/js/js.js"></script>
+<script type="text/javascript">
+ $(function(){
+	 //导航定位
+	 $(".nav li:eq(6)").addClass("navCur");
+	 })
+</script>
+</head>
+
+<body>
+ <div class="header">
+  <div class="width1190">
+   <div class="fr">
+    <a href="login">登录</a> |
+    <a href="register">注册</a>
+   </div>
+   <div class="clears"></div>
+  </div><!--width1190/-->
+ </div><!--header/-->
+ <div class="list-nav">
+  <div class="width1190">
+
+   <ul class="nav">
+    <li><a href="main">首页</a></li>
+    <div class="clears"></div>
+   </ul><!--nav/-->
+   <div class="clears"></div>
+  </div><!--width1190/-->
+ </div><!--list-nav/-->
+
+ <div class="content">
+  <div class="width1190">
+   <div class="vip-left">
+       <div class="vipNav">
+         <h3 class="vipTitle">个人中心</h3>
+        <dl>
+         <dt class="vipIcon3">账户设置</dt>
+          <dd>
+           <a href="personInfo" >个人信息设置</a>
+          </dd>
+         <dt class="vipIcon1">房源</dt>
+          <dd>
+           <a href="main" class="vipNavCur">房源列表</a>
+          </dd>
+        </dl>
+       </div><!--vipNav/-->
+    </div><!--vip-left/-->
+    <div class="vip-right">
+     <h3 class="vipright-title">房源列表</h3>
+    <div class="right-pro">
+       <!--循环房屋图片-->
+        {% for house_list in HouseInfo %}
+            <dl>
+      <dt><a href="proinfo"><img src='{{house_list.house_image}}'/></a></dt>
+      <dd>
+       <h3><a href="proinfo">{{ house_list.rental_name}}</a></h3> <!--房屋名字-->
+       <div class="pro-fang">{{ house_list.write_interview }} {{house_list.house_image}}</div> <!--房屋介绍-->
+       <div class="right-price">{{ house_list.house_price }}元/月</div> <!--房屋价格-->
+      </dd>
+           </dl>
+      {% endfor %}
+
+    </div><!--right-pro/-->
+
+    </div><!--vip-right/-->
+    <div class="clearfix"></div>
+  </div><!--width1190/-->
+ </div><!--content/-->
+ <div class="copy" style="margin-top: 90px;">Copyright@ 2019 ytouch </div>
 </body>
 </html>
