@@ -61,9 +61,9 @@
        <!--循环房屋图片-->
         {% for house_list in HouseInfo %}
             <dl>
-      <dt><a href="proinfo"><img src='{{house_list.house_image}}'/></a></dt>
+      <dt><a href="proinfo" id="_houseimage" onclick="proinfo_click_fun()"><img src='{{house_list.house_image}}'/></a></dt>
       <dd>
-       <h3><a href="proinfo">{{ house_list.rental_name}}</a></h3> <!--房屋名字-->
+       <h3 id="house_name_h"><a href="proinfo" id="_housename" onclick="proinfo_click_fun()">{{ house_list.rental_name}}</a></h3> <!--房屋名字-->
        <div class="pro-fang">{{ house_list.write_interview }} {{house_list.house_image}}</div> <!--房屋介绍-->
        <div class="right-price">{{ house_list.house_price }}元/月</div> <!--房屋价格-->
       </dd>
@@ -77,6 +77,7 @@
   </div><!--width1190/-->
  </div><!--content/-->
  <div class="copy" style="margin-top: 90px;">Copyright@ 2019 ytouch </div>
+ <script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
  <script src="/static/js/jquery.js"></script>
 <script>
     var user_str = document.getElementById("user_title").innerText; //获取登录用户值，判断用户是否已经登录
@@ -92,6 +93,12 @@
         document.getElementById('register_title').style.visibility="hidden";
     }
 
+    /*查看详情响应函数*/
+    function proinfo_click_fun() {
+        alert("happy new year test");
+        var storage = window.sessionStorage;
+        storage['housename'] = document.getElementById('house_name_h').innerText;//保存房屋名字
+    }
 </script>
 </body>
 </html>

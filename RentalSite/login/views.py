@@ -206,6 +206,12 @@ def personInfo(request):
 #主要是用于展示房屋详细信息页面
 def proInfo(request):
     username = getLoginInfo("username")
+    #context = request.session.get('housename')
     house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
+    if request.method == 'GET':
+        name = request.GET.get('cur_title')
+        print(name)
+        print('end')
+        return render(request,'main/proinfo.html')
     #获取前后端传值：难点在于一个页面给另一个界面传值（明早研究）
     return render(request,'main/proinfo.html',{'UserName':username,'':house_info_list})
