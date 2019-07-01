@@ -93,9 +93,6 @@ def register(request):
 def main(request):
     username = getLoginInfo("username")
     house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
-    #这个部分由房东在后台手动添加信息，前端负责展示信息即可。当未登录账号时，返回错误界面
-    if username == "":
-        return redirect('ErrorInfo') #跳转至登录错误信息，说明账号未登录
     return render(request,"main/main.html",{"UserName":username,"HouseInfo":house_info_list}) #返回主界面
 
 #实现房东添加房子照片等信息到前端界面中
@@ -208,4 +205,7 @@ def personInfo(request):
 
 #主要是用于展示房屋详细信息页面
 def proInfo(request):
-    return render(request,'main/proinfo.html')
+    username = getLoginInfo("username")
+    house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
+    #获取前后端传值：难点在于一个页面给另一个界面传值（明早研究）
+    return render(request,'main/proinfo.html',{'UserName':username,'':house_info_list})

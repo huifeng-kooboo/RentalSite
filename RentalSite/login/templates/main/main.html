@@ -20,8 +20,9 @@
  <div class="header">
   <div class="width1190">
    <div class="fr">
-    <a href="login">登录</a> |
-    <a href="register">注册</a>
+       <a href="personInfo" id="user_title">{{ UserName }} </a>
+    <a href="login" id="login_title">登录</a> |
+    <a href="register" id="register_title">注册</a>
    </div>
    <div class="clears"></div>
   </div><!--width1190/-->
@@ -76,5 +77,21 @@
   </div><!--width1190/-->
  </div><!--content/-->
  <div class="copy" style="margin-top: 90px;">Copyright@ 2019 ytouch </div>
+ <script src="/static/js/jquery.js"></script>
+<script>
+    var user_str = document.getElementById("user_title").innerText; //获取登录用户值，判断用户是否已经登录
+    if (user_str == "")
+    {
+        document.getElementById("user_title").style.visibility="hidden";
+        document.getElementById("login_title").style.visibility="visible";
+        document.getElementById('register_title').style.visibility="visible";
+    }
+    else{
+        document.getElementById("user_title").style.visibility="visible";
+        document.getElementById("login_title").style.visibility="hidden";
+        document.getElementById('register_title').style.visibility="hidden";
+    }
+
+</script>
 </body>
 </html>
