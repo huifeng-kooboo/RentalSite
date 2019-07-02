@@ -44,7 +44,7 @@
     <img src="/static/main/images/fangt1.jpg" />
    </div><!--proImg/-->
    <div class="proText fr">
-    <h3 class="proTitle">上海市智慧园  两室一厅 一厨一卫 </h3>
+    <h3 class="proTitle" id="rental_house_name"></h3>
     <div class="proText1">
 	 租户：李先生<br />
      户型：2室 1厅 1卫<br />
@@ -53,12 +53,12 @@
      楼层：2层/18层<br />
      装修：简单装修<br />
 	 发布时间：2018-12-22<br />
-     小区：甘露园南里一区（朝阳 甘露园）1995年
+     小区：<p id="cur_address"></p>
 
     </div>
     <div class="xun-car">
-     <a href="javascript:;" class="xwjg">¥<strong>3600</strong>元</a>
-     <a href="javascript:;" class="projrgwc">15467718909</a>
+     <a href="javascript:;" class="xwjg">¥<strong id="house_price"></strong>元</a>
+     <a href="javascript:;" class="projrgwc" id="phone_number"></a>
     </div><!--xun-car/-->
    </div><!--proText/-->
    <div class="clears"></div>
@@ -70,8 +70,8 @@
    </ul>
    <div class="clears"></div>
   </div><!--proEq/-->
-  <div class="proList">
-介绍放在这
+  <div class="proList" >
+<h3 id="write_interview"></h3>
 <br />
   </div>
  </div><!--proBox/-->
@@ -90,18 +90,28 @@
  <script>
      var storage = window.sessionStorage;
      var cur_title = storage.housename;
-     //cur_title 为传来的值。展示到前端去
-     alert(cur_title);
+     var cur_str = document.getElementById('rental_house_name').innerText;
      var data = {'cur_title':cur_title};
-     $.ajax({
-         type:'GET',
-         url:'proinfo',
-         data:data,
-         success:function(result){
-             //返回成功进行响应操作
-             alert('dd');
+     if (cur_title != null)
+     {
+         if (cur_str!=null)
+         {
+             $.ajax({
+               type:'GET',
+               url:'proinfo',
+               data:data,
+               success:function(result){
+                //返回成功进行响应操作
+                //把获取信息填写在当中//现在还差image字段传值
+                document.getElementById('rental_house_name').innerText = result['rental_name'];
+                document.getElementById('house_price').innerText = result['house_price'];
+                document.getElementById('phone_number').innerText = result['phone_number'];
+                document.getElementById('write_interview').innerText = result['write_interview'];
+                document.getElementById('cur_address').innerText = result['cur_address'];
+              }
+            });
          }
-     });
+     }
  </script>
 </body>
 </html>

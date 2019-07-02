@@ -212,10 +212,18 @@ def proInfo(request):
     if request.method == 'GET':
         house_name = request.GET.get('cur_title')
         #查找数据库
-        #house_data = RentHouseInfo.objects.filter(rental_name=house_name)
-        #data = {'house_data':house_data[0].rental_name}
-        print(house_name)
-        print('end')
-       # return JsonResponse(data) #返回json字符串到前端，前端用于展示
-    #获取前后端传值：难点在于一个页面给另一个界面传值（明早研究）
+        #bug:为何第一次的时候house_name为none 猜测原因：第一次直接找的是name为cur_title的值(第二阶段的时候解决)
+        #当 house_name不为空时候，获取数据库信息
+        if not house_name == None:
+            print(house_name)
+            house_data = RentHouseInfo.objects.filter(rental_name=str(house_name))
+            rental_name = house_data[0].rental_name #业主姓名
+            house_price = house_data[0].house_price #价格
+            #house_image = house_data[0].house_image #房子照片
+            write_interview =house_data[0].write_interview #房屋介绍
+            cur_address = house_data[0].cur_address #当前住址
+            phone_number = house_data[0].phone_number #联系手机号
+            data = {'rental_name':rental_name,'house_price':house_price,
+                    'write_interview':write_interview,'cur_address':cur_address,'phone_number':phone_number}
+            return JsonResponse(data)
     return render(request,'main/proinfo.html',{'UserName':username,'':house_info_list})
