@@ -27,12 +27,6 @@
    <div class="clears"></div>
   </div><!--width1190/-->
  </div><!--header/-->
- <div class="logo-phone">
-  <div class="width1190">
-   <h1 class="logo"><a href="index.html"><img src="/static/main/images/logo.png" width="163" height="59" /></a></h1>
-   <div class="clears"></div>
-  </div><!--width1190/-->
- </div><!--logo-phone/-->
  <div class="list-nav">
   <div class="width1190">
 
@@ -83,7 +77,6 @@
  </div><!--proBox/-->
  </div><!--content/-->
  <div class="copy">Copyright@ 2019 ytouch</div>
-<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script src="/static/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
@@ -92,21 +85,23 @@
 <!--===============================================================================================-->
 <script src="/static/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-<script src="/static/js/login.js"></script>
 <!--调用Jquery.js-->
 <script src="/static/js/jquery.js"></script>
  <script>
      var storage = window.sessionStorage;
      var cur_title = storage.housename;
+     //cur_title 为传来的值。展示到前端去
+     alert(cur_title);
      var data = {'cur_title':cur_title};
      $.ajax({
          type:'GET',
-         url:'login/proInfo/',
+         url:'proinfo',
          data:data,
          success:function(result){
-             alert(result);
+             //返回成功进行响应操作
+             alert('dd');
          }
-     })
+     });
  </script>
 </body>
 </html>

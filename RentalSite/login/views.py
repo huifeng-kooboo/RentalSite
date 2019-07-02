@@ -208,10 +208,14 @@ def proInfo(request):
     username = getLoginInfo("username")
     #context = request.session.get('housename')
     house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
+    #bug:调用两次get请求。 解决办法1：javascript中判断值是否为空，为空情况下调用get请求。（明早测试用下）
     if request.method == 'GET':
-        name = request.GET.get('cur_title')
-        print(name)
+        house_name = request.GET.get('cur_title')
+        #查找数据库
+        #house_data = RentHouseInfo.objects.filter(rental_name=house_name)
+        #data = {'house_data':house_data[0].rental_name}
+        print(house_name)
         print('end')
-        return render(request,'main/proinfo.html')
+       # return JsonResponse(data) #返回json字符串到前端，前端用于展示
     #获取前后端传值：难点在于一个页面给另一个界面传值（明早研究）
     return render(request,'main/proinfo.html',{'UserName':username,'':house_info_list})
