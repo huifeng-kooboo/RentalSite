@@ -23,6 +23,7 @@
        <a href="personInfo" id="user_title">{{ UserName }} </a>
     <a href="login" id="login_title">登录</a> |
     <a href="register" id="register_title">注册</a>
+       <a href="renterSetting" id="setting_title">设置</a> <!--这个是用来进入房东租户设置界面的-->
    </div>
    <div class="clears"></div>
   </div><!--width1190/-->
@@ -91,6 +92,12 @@
         document.getElementById("user_title").style.visibility="visible";
         document.getElementById("login_title").style.visibility="hidden";
         document.getElementById('register_title').style.visibility="hidden";
+    }
+    /*admin则默认为房东设置*/
+    if (user_str == "admin")
+    {
+        //修改标签属性
+        $('#setting_title').attr('href','landloadSetting');
     }
 
     /*查看详情响应函数*/
