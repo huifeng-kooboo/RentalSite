@@ -31,79 +31,82 @@
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" method="post">
                 {% csrf_token %}
-				<span class="contact100-form-title">
-					房东设置部分
-				</span>
-
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
 					<span class="label-input100">房东姓名</span>
-					<input class="input100" type="text" name="landload_name" value="{{ personal.username }}" disabled="disabled">
+                    <!--默认姓名为admin 后期再改-->
+					<input class="input100" type="text" name="landload_name" value="admin" disabled="disabled">
 					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <!--手机号信息需要手动输入-->
+				<div class="wrap-input100 validate-input" data-validate = "手机号长度为11位">
 					<span class="label-input100">房东手机号</span>
-					<input class="input100" type="text" name="phone_number" value="{{ personal.password }}">
+					<input class="input100" type="text" name="phone_number">
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <div class="wrap-input100 validate-input" data-validate = "房东住址至少为6位">
 					<span class="label-input100">房东住址</span>
-					<input class="input100" type="text" name="landload_address" value="{{ personal.password }}">
+					<input class="input100" type="text" name="landload_address">
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <div class="wrap-input100 validate-input" data-validate = "日期格式有问题">
 					<span class="label-input100">租房时间</span>
-					<input class="input100" type="text" name="rent_date" value="{{ personal.password }}">
+					<input class="input100" type="date" name="rent_date">
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">设置房租</span>
-					<input class="input100" type="text" name="rent_price" value="{{ personal.password }}">
+					<input class="input100" type="number" name="rent_price">
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">设置电费</span>
-					<input class="input100" type="text" name="electric_price" value="{{ personal.password }}">
+					<input class="input100" type="number" name="electric_price">
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">设置水费</span>
-					<input class="input100" type="text" name="water_price" value="{{ personal.password }}">
+					<input class="input100" type="number" name="water_price">
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">设置网费</span>
-					<input class="input100" type="text" name="network_price" value="{{ personal.password }}">
+					<input class="input100" type="number" name="network_price">
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">设置钥匙数量</span>
-					<input class="input100" type="text" name="key_number" value="{{ personal.password }}">
+					<input class="input100" type="number" name="key_number">
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <div class="wrap-input">
 					<span class="label-input100">是否有空调</span>
-					<input class="input100" type="text" name="air_condition" value="{{ personal.password }}">
+					<input class="input100" type="checkbox" name="air_condition">
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <div class="wrap-input">
 					<span class="label-input100">是否有洗衣机</span>
-					<input class="input100" type="text" name="washing_machine" value="{{ personal.password }}">
+					<input class="input100" type="checkbox" name="washing_machine">
 					<span class="focus-input100"></span>
 				</div>
 
+                <!--选择租户-->
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">选择租户</span>
-					<input class="input100" type="text" name="rental_name" value="{{ personal.password }}">
+					<input class="input100" type="text" name="rental_name" list="rentname_list_nums">
+                 <datalist id="rentname_list_nums">
+                <option>item1</option>
+                <option>item2</option>
+                 </datalist>
 					<span class="focus-input100"></span>
 				</div>
 

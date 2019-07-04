@@ -129,9 +129,9 @@ def renterSetting(request):
 #房东设置部分（房东这边先设置）
 def landloadSetting(request):
     renter_List = UserRegister.objects.all() #获取所有用户信息
+    landload_name = 'admin' #设置管理员默认为admin
     if request.POST:
         #获取界面输入的信息
-        landload_name = request.POST.get("landload_name")
         phone_number = request.POST.get("phone_number")
         landload_address = request.POST.get("landload_address")
         rent_date = request.POST.get("rent_date")
@@ -140,8 +140,10 @@ def landloadSetting(request):
         electric_price = request.POST.get("electric_price")
         network_price = request.POST.get("network_price")
         key_number = request.POST.get("key_number")
-        air_condition = request.POST.get("air_condition")
-        washing_machine = request.POST.get("washing_machine")
+        #air_condition = request.POST.get("air_condition")
+        air_condition = True
+        #washing_machine = request.POST.get("washing_machine")
+        washing_machine = False
         rental_name = request.POST.get("rental_name") #用于关联到租户的那个表当中去
         record = LandloadInfo.objects.filter(rental_name=rental_name)
         if len(record) < 1:
