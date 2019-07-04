@@ -87,15 +87,23 @@
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input">
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">是否有空调</span>
-					<input class="input100" type="checkbox" name="air_condition">
+					<input class="input100" type="text" name="air_condition" id="check_condition" list="condition_list_nums">
+                 <datalist id="condition_list_nums">
+                <option>True</option>
+                <option>False</option>
+                 </datalist>
 					<span class="focus-input100"></span>
 				</div>
 
-                <div class="wrap-input">
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">是否有洗衣机</span>
-					<input class="input100" type="checkbox" name="washing_machine">
+					<input class="input100" type="text" name="washing_machine" id="check_washing" list="washing_list_nums">
+                 <datalist id="washing_list_nums">
+                <option>True</option>
+                <option>False</option>
+                 </datalist>
 					<span class="focus-input100"></span>
 				</div>
 
@@ -104,16 +112,25 @@
 					<span class="label-input100">选择租户</span>
 					<input class="input100" type="text" name="rental_name" list="rentname_list_nums">
                  <datalist id="rentname_list_nums">
-                <option>item1</option>
-                <option>item2</option>
+                     <!--从数据库中获取租户信息供管理者使用-->
+                     {% for renter_lise in renter_list %}
+                    <option>{{ renter_lise.username }}</option>
+                     {% endfor %}
                  </datalist>
+					<span class="focus-input100"></span>
+				</div>
+
+               <!--设置租客交房租时间-->
+                <div class="wrap-input100 validate-input" data-validate = "日期格式有问题">
+					<span class="label-input100">租客交租日期</span>
+					<input class="input100" type="date" name="pay_date">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
-						<button class="contact100-form-btn" type="submit">
+						<button class="contact100-form-btn" type="submit" id="submit">
 							<span>
 								设置完成
 								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -155,8 +172,8 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-23581568-13');
+
 </script>
 
 </body>

@@ -16,7 +16,6 @@
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
-                  <!--  action="action="{% url 'login' %}""-->
                     <form method="POST"   id="signup-form" class="signup-form">
                         {% csrf_token %} <!--Django表单界面必加，用于安全认证-->
                         <h2 class="form-title">租户注册</h2>
@@ -66,7 +65,7 @@
 
             <!--ajax请求-->
             $.ajax({
-                url:'/login/register', //url指的是相对于本机服务器，请求的uri位置
+                url:'/login/register', //url指的是相对于本机服务器，请求的uri位置:可能错误 等后续再改
                 type:'POST',   //方法：例如Post/get等等
                 data : post_data, /*客户端发送给服务器传递的参数*/
                 dataType:"json",  /*参数数据类型*/

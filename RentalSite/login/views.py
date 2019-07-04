@@ -4,9 +4,6 @@ from.forms import LoginForm,RegisterForm
 from.models import UserLogin,UserRegister,RentalInfo,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.decorators.csrf import csrf_exempt
-from alipay import AliPay #调用支付宝接口
-import json
 
 #添加检查错误信息功能（待完善）
 def checkErrorType():
@@ -89,7 +86,7 @@ def register(request):
             return JsonResponse(data)
     return render(request,"login/register.html")
 
-#主界面应该有两个界面，第一个界面是房屋照片以及房屋名字，点进去第二个界面可以看到它的具体房屋信息
+#主界面主要是展示数据库房屋信息
 def main(request):
     username = getLoginInfo("username")
     house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合
@@ -115,19 +112,22 @@ def UpdateHouseInfo(request):
         return redirect('main') #转回主界面
     return render(request,"landload/addhouseinfo.html") #添加租房信息到数据库当中
 
-#租户设置页面(前端先判断数据是否为空)
+#租户设置:租户只负责显示数据,无法进行改动
 def renterSetting(request):
     #获取租户信息
     rent_phone = getLoginInfo("username") #获取租户手机号
     rent_info_list = RentalInfo.objects.filter(rent_phone=rent_phone) #找到对应的租户信息，传到前端
-    #租户部分，只负责一小部分
-    if request.POST:
-        #获取前端数据保存到前端界面当中
-        return redirect("main") #进入主界面
-    return render(request,"rent/rentsetting.html",{"rent_info":rent_info_list}) #进入租户设置界面
+    #说明房东未设置，直接报错即可  后期优化
+    if len(rent_info_list) < 1:
+        return redirect('ErrorInfo')
+    #找到则返回正确界面
+    return render(request,"rent/rentsetting.html",{"rent_info":rent_info_list[0]}) #进入租户设置界面
 
 #房东设置部分（房东这边先设置）
 def landloadSetting(request):
+    cur_name = getLoginInfo('username') #获取登录名 #判断是否为房东---防止租户设置bug
+    if not cur_name == 'admin':
+        return redirect('ErrorInfo') #跳转至错误页面,不让进主界面
     renter_List = UserRegister.objects.all() #获取所有用户信息
     landload_name = 'admin' #设置管理员默认为admin
     if request.POST:
@@ -140,32 +140,32 @@ def landloadSetting(request):
         electric_price = request.POST.get("electric_price")
         network_price = request.POST.get("network_price")
         key_number = request.POST.get("key_number")
-        #air_condition = request.POST.get("air_condition")
-        air_condition = True
-        #washing_machine = request.POST.get("washing_machine")
-        washing_machine = False
+        air_condition = request.POST.get("air_condition")
+        washing_machine = request.POST.get("washing_machine")
         rental_name = request.POST.get("rental_name") #用于关联到租户的那个表当中去
+        pay_date = request.POST.get('pay_date') #用户交付房租日期
         record = LandloadInfo.objects.filter(rental_name=rental_name)
         if len(record) < 1:
+            #数据库导入
             obj = LandloadInfo.objects.create(landload_name=landload_name,phone_number=phone_number,landload_address=landload_address,rent_date=rent_date,
                                               rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
                                               key_number=key_number,air_condition=air_condition,washing_machine=washing_machine,
                                               rental_name=rental_name)#保存信息到数据库当中
             obj_rental = RentalInfo.objects.create(rent_phone=rental_name,rent_Date=rent_date,rent_price=rent_price,
                                                   electric_price=electric_price,water_price=water_price,network_price=network_price,
-                                                  key_number=key_number,air_condition=air_condition,washing_machine=washing_machine) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
+                                                  key_number=key_number,air_condition=air_condition,washing_machine=washing_machine,pay_date=pay_date) #先保存这些信息到租户部分，剩余那个支付时间留给租户来设置。
             return redirect("main") #转到主界面
-        #更新数据库
         else:
+            #数据库更新(因为存在原先数据)
             LandloadInfo.objects.filter(rental_name=rental_name).update(landload_name=landload_name,phone_number=phone_number,landload_address=landload_address,rent_date=rent_date,
                                         rent_price=rent_price,electric_price=electric_price,water_price=water_price,network_price=network_price,
                                         key_number=key_number,air_condition=air_condition,washing_machine=washing_machine)
             RentalInfo.objects.filter(rent_phone=rental_name).update(rent_Date=rent_date, rent_price=rent_price,
                                      electric_price=electric_price, water_price=water_price,
                                      network_price=network_price,key_number=key_number, air_condition=air_condition,
-                                     washing_machine=washing_machine)
+                                     washing_machine=washing_machine,pay_date=pay_date)
             return redirect('main') #跳转至主界面
-    return render(request,"landload/landloadsetting.html",{'lanloadsetting':renter_List}) #进入房东设置界面
+    return render(request,"landload/landloadsetting.html",{'renter_list':renter_List}) #进入房东设置界面
 
 #价格费用界面由前端获取并计算
 def PaySetting(request):
@@ -177,7 +177,7 @@ def PaySetting(request):
 def ErrorInfo(request):
     #获取用户是否登录
     username = getLoginInfo("username")
-    if username == "":
+    if username == "" or not username == 'admin':
         error_info = '当前用户未登录'
         return render(request, "errormsg.html", {'error_info': error_info})
     return render(request,"errormsg.html") #直接返回错误界面
@@ -217,7 +217,6 @@ def proInfo(request):
         #bug:为何第一次的时候house_name为none 猜测原因：第一次直接找的是name为cur_title的值(第二阶段的时候解决)
         #当 house_name不为空时候，获取数据库信息
         if not house_name == None:
-            print(house_name)
             house_data = RentHouseInfo.objects.filter(rental_name=str(house_name))
             rental_name = house_data[0].rental_name #业主姓名
             house_price = house_data[0].house_price #价格

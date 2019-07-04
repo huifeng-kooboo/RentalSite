@@ -1,97 +1,119 @@
+<!--表单提交通用模板-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>租户设置</title>
+	<title>租户设置显示</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="/static/form/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/form/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/static/form/css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
-<!--这个界面就是主要把租户那些东西弄成form表单，让用户填写，method = "POST"-->
-    <div id="main">
-        <form role="form" id ="frm" method="post">
-            <div class="form-group">
-                <p class="tit fl">姓名</p>
-                <input type="text" name="landload_name" id="" value="" placeholder="您的姓名" class="fl"/>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">手机号</p>
-                <input type="text" name="phone_number" id="" value="" placeholder="您的手机号码" class="fl"/>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">租房时间</p>
-                <input type="text" name="rent_date" id="" value="" placeholder="请选择租房日期" class="fl day"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">房租</p>
-                <input type="text" name="rent_price" id="" value="" placeholder="房租价格" class="fl"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">设置水费</p>
-                <input type="text" name="water_price" id="" value="" placeholder="水费价格" class="fl"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">设置电费</p>
-                <input type="text" name="electric_price" id="" value="" placeholder="电费价格" class="fl"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">设置网费</p>
-                <input type="text" name="network_price" id="" value="" placeholder="网费价格" class="fl"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">钥匙数量</p>
-                <input type="text" name="" id="" value="" placeholder="钥匙数量" class="fl day"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">洗衣机情况</p>
-                <input type="text" name="" id="" value="" placeholder="是否有洗衣机" class="fl day"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-            <div class="form-group">
-                <p class="tit fl">空调情况</p>
-                <input type="text" name="" id="" value="" placeholder="是否有空调" class="fl day"/>
-                <i class="iconfont icon-arrowright fl"></i>
-            </div>
-        </form>
-         <button type="submit" id="btnform" class="btn btn-default">提交委托</button>
-    </div>
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#btnform").bind("click", function() {
-                //var landloadmsg = $("#frm");
-                var dataform =  document.getElementsByTagName('input');
-                var jsons = transformToJson(dataform);
-                var data = JSON.stringify(jsons);
-                alert(data);
-                function transformToJson(formData) {
-                        var obj = {}
-                        for (var i in formData) {
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">房东姓名:{{ rent_info.rent_phone }}</span>
+					<span class="focus-input100"></span>
+				</div>
 
-                            //下标为的i的name做为json对象的key，下标为的i的value做为json对象的value
-                            obj[formData[i].name] = formData[i]['value'];
-                        }
-                        return obj;
-                    }
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">租房日期:{{ rent_info.rent_Date}}</span>
+					<span class="focus-input100"></span>
+				</div>
 
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">租房价格:{{ rent_info.rent_price}}</span>
+					<span class="focus-input100"></span>
+				</div>
 
-                $.ajax({
-                    type: "POST",
-                    url: "",
-                    data: data,
-                    success: function (data) {
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">本月电费:{{ rent_info.electric_price}}</span>
+					<span class="focus-input100"></span>
+				</div>
 
-                    }
-                });
-            })
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">本月水费:{{ rent_info.water_price}}</span>
+					<span class="focus-input100"></span>
+				</div>
 
-        });
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">本月网费:{{ rent_info.network_price}}</span>
+					<span class="focus-input100"></span>
+				</div>
 
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">钥匙数量:{{ rent_info.key_number}}</span>
+					<span class="focus-input100"></span>
+				</div>
 
-    </script>
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">是否有空调:{{ rent_info.air_condition}}</span>
+					<span class="focus-input100"></span>
+				</div>
+
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">是否有洗衣机:{{ rent_info.washing_machine}}</span>
+					<span class="focus-input100"></span>
+				</div>
+
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">付房租时间:{{ rent_info.pay_date}}</span>
+					<span class="focus-input100"></span>
+				</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="/static/form/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/form/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/form/vendor/bootstrap/js/popper.js"></script>
+	<script src="/static/form/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/form/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="/static/form/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/static/form/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/form/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/form/js/main.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-23581568-13');
+
+</script>
+
 </body>
 </html>
