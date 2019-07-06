@@ -117,7 +117,7 @@ def renterSetting(request):
     #获取租户信息
     rent_phone = getLoginInfo("username") #获取租户手机号
     rent_info_list = RentalInfo.objects.filter(rent_phone=rent_phone) #找到对应的租户信息，传到前端
-    #说明房东未设置，直接报错即可  后期优化
+    #说明房东未设置，直接报错即可后期优化
     if len(rent_info_list) < 1:
         return redirect('ErrorInfo')
     #找到则返回正确界面
@@ -238,11 +238,11 @@ def proInfo(request):
             house_data = RentHouseInfo.objects.filter(rental_name=str(house_name))
             rental_name = house_data[0].rental_name #业主姓名
             house_price = house_data[0].house_price #价格
-            #house_image = house_data[0].house_image #房子照片
+            house_image_url = house_data[0].house_image.url #房子照片
             write_interview =house_data[0].write_interview #房屋介绍
             cur_address = house_data[0].cur_address #当前住址
             phone_number = house_data[0].phone_number #联系手机号
-            data = {'rental_name':rental_name,'house_price':house_price,
+            data = {'rental_name':rental_name,'house_price':house_price,'house_image_url':house_image_url,
                     'write_interview':write_interview,'cur_address':cur_address,'phone_number':phone_number}
             return JsonResponse(data)
     return render(request,'main/proinfo.html',{'UserName':username,'':house_info_list})

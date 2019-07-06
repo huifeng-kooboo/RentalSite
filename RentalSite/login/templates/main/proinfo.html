@@ -42,7 +42,7 @@
  <div class="content">
   <div class="width1190" style="width:1000px;">
    <div class="proImg fl">
-    <img src="/static/main/images/fangt1.jpg" />
+    <img id="id_house_image" src="" />
    </div><!--proImg/-->
    <div class="proText fr">
     <h3 class="proTitle" id="rental_house_name"></h3>
@@ -114,6 +114,8 @@
                 document.getElementById('phone_number').innerText = result['phone_number'];
                 document.getElementById('write_interview').innerText = result['write_interview'];
                 document.getElementById('cur_address').innerText = result['cur_address'];
+                //设置css属性通用方法：
+                document.getElementById('id_house_image').setAttribute('src',result['house_image_url']);
               }
             });
          }
