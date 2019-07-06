@@ -21,8 +21,9 @@
  <div class="header">
   <div class="width1190">
    <div class="fr">
-    <a href="login">登录{{ house_name }}</a> |
-    <a href="register">注册</a>
+    <a href="personInfo" id="a_username"> {{ UserName }}</a>
+    <a href="login" id="a_login">登录</a> |
+    <a href="register" id="a_register">注册</a>
    </div>
    <div class="clears"></div>
   </div><!--width1190/-->
@@ -80,6 +81,19 @@
 <!--调用Jquery.js-->
 <script src="/static/js/jquery.js"></script>
  <script>
+     var user_str = document.getElementById("a_username").innerText; //获取登录用户值，判断用户是否已经登录
+    if (user_str == "")
+    {
+        document.getElementById("a_username").style.visibility="hidden";
+        document.getElementById("a_login").style.visibility="visible";
+        document.getElementById('a_register').style.visibility="visible";
+    }
+    else{
+        document.getElementById("a_username").style.visibility="visible";
+        document.getElementById("a_login").style.visibility="hidden";
+        document.getElementById('a_register').style.visibility="hidden";
+    }
+
      var storage = window.sessionStorage;
      var cur_title = storage.housename;
      var cur_str = document.getElementById('rental_house_name').innerText;

@@ -167,16 +167,34 @@ def landloadSetting(request):
             return redirect('main') #跳转至主界面
     return render(request,"landload/landloadsetting.html",{'renter_list':renter_List}) #进入房东设置界面
 
-#价格费用界面由前端获取并计算
+#价格费用界面
 def PaySetting(request):
-    if request.POST:
-        return render(request,"rent/rentpay.html")
+    #获取当前租户的账户
+    cur_username = getLoginInfo('username')
+    #判断是否账户登录
+    if cur_username =="":
+        return redirect('ErrorInfo')
+    #计算租户需要支付的价格（不能用前端计算，考虑安全性问题）
+    rent_Data = RentalInfo.objects.filter(rent_phone=cur_username)
+    # >0:说明房东设置过租户房费，电费等信息了
+    if len(rent_Data) > 0:
+        #获取需要支付的价格
+        str_rentprice =rent_Data[0].rent_price
+        str_electricprice = rent_Data[0].electric_price
+        str_waterprice = rent_Data[0].water_price
+        str_netprice = rent_Data[0].network_price
+        cur_pay_price = float(str_rentprice) + float(str_electricprice) + float(str_netprice) +float(str_waterprice)
+        #cur_pay_price为本月需要支付的金额 包含水电费网费--
+        data = {'str_paymoney':cur_pay_price}
+        print(type(cur_pay_price)) #cur_pay_price 类型是float
+        return render(request, "rent/rentpay.html",data)
     return render(request,"rent/rentpay.html") #待完善
 
 #错误信息界面：所有错误界面都放在这
 def ErrorInfo(request):
     #获取用户是否登录
     username = getLoginInfo("username")
+    #如果不是管理员或者未登录
     if username == "" or not username == 'admin':
         error_info = '当前用户未登录'
         return render(request, "errormsg.html", {'error_info': error_info})

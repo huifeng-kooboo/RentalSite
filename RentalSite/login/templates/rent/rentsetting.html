@@ -30,7 +30,7 @@
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">房东姓名:{{ rent_info.rent_phone }}</span>
+					<span class="label-input100">我的账号:{{ rent_info.rent_phone }}</span>
 					<span class="focus-input100"></span>
 				</div>
 
@@ -40,22 +40,22 @@
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">租房价格:{{ rent_info.rent_price}}</span>
+					<span class="label-input100" id="id_rentprice">租房价格:{{ rent_info.rent_price}}</span>
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">本月电费:{{ rent_info.electric_price}}</span>
+					<span class="label-input100" id="id_electricprice">本月电费:{{ rent_info.electric_price}}</span>
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">本月水费:{{ rent_info.water_price}}</span>
+					<span class="label-input100" id="id_waterprice">本月水费:{{ rent_info.water_price}}</span>
 					<span class="focus-input100"></span>
 				</div>
 
                 <div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">本月网费:{{ rent_info.network_price}}</span>
+					<span class="label-input100" id="id_networkprice">本月网费:{{ rent_info.network_price}}</span>
 					<span class="focus-input100"></span>
 				</div>
 
@@ -78,6 +78,12 @@
 					<span class="label-input100">付房租时间:{{ rent_info.pay_date}}</span>
 					<span class="focus-input100"></span>
 				</div>
+
+                <div class="wrap-input100 validate-input" data-validate="Name is required">
+					<a href="PaySetting">现在支付</a>
+					<span class="focus-input100"></span>
+				</div>
+
 		</div>
 	</div>
 	<div id="dropDownSelect1"></div>
@@ -112,8 +118,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'UA-23581568-13');
-
 </script>
-
 </body>
 </html>
