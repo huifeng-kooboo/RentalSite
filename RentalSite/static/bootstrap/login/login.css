@@ -1,0 +1,368 @@
+/* 导航头 */
+.g_nav_head{
+    height:60px;
+    top:0;
+    display: block;
+    background-color: #ffffff;
+    /* 背景使用渐变色 */
+    background: linear-gradient(to right,lavenderblush, white);
+    border-bottom:1px solid #80bdff; /*添加1px底部边框,淡蓝色*/
+}
+
+/* 导航头用户模块css,主要包括登录和注册两个模块*/
+.g_nav_user{
+    top:0;
+    height:59px;
+    display: block;
+    float: right; /*使得div靠右显示*/
+}
+
+/*登录标签*/
+.g_a_login{
+    text-decoration:none;
+    color: black;
+    top:23px;
+    padding: 0;
+    display: block;
+    right:150px;
+    float: right;
+    font-family: Microsoft Yahei;
+    font-size: 14px;
+    position:relative;
+    text-align: center;
+}
+
+/*注册标签*/
+.g_a_register{
+    text-decoration:none;
+    color: black;
+    top:23px;
+    right:110px;
+    padding: 0;
+    display: block;
+    float: right;
+    font-family: Microsoft Yahei;
+    font-size:14px;
+    position:relative;
+    text-align: center;
+}
+
+/*a标签放上来之后的变化*/
+a:hover.g_a_register{
+    text-decoration:none; /*去掉下划线*/
+    color:#80bdff;
+}
+
+/*a标签放上来之后的变化*/
+a:hover.g_a_login{
+    text-decoration:none; /*去掉下划线*/
+    color:#80bdff;
+}
+
+/*div：遮盖界面*/
+.g_mask{
+    top:0px;
+    position: absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+/*div: 登录界面 */
+.g_div_login{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width:600px;
+    height: 430px;
+    padding:10px; /*设置内边距*/
+    background: #ffffff;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    border-radius: 20px;/*设置圆角*/
+}
+
+/*div: 注册界面 */
+.g_div_register {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width:600px;
+    height: 430px;
+    background: #ffffff;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    border-radius: 10px;/*设置圆角*/
+}
+
+/*div: 关闭按钮界面 */
+.div_login_button_close{
+    position: absolute;/*相对位置*/
+    top:0px;
+    right:0px;
+    height:60px;
+    width:60px;
+    border-radius: 10px;
+    padding:0px;
+}
+
+/* button: 关闭按钮 */
+.btn_login_close{
+    position:absolute;
+    top:10px;
+    right:10px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/closebutton.png')no-repeat;
+    height:30px;
+    width: 30px;
+    border-radius: 0px;
+}
+
+/*div：租房logo*/
+.div_login_logo{
+    position:absolute;/*绝对布局 相对于父元素*/
+    height:60px;
+    width: 400px;
+    margin:0 auto;
+    top:20px;
+    right:100px;
+    border-color: cornflowerblue;
+}
+
+/*image: 租房logo*/
+.img_login_logo{
+    position: absolute;
+    left: 90px;
+    top:10px;
+    height: 40px;
+    width: 40px;
+}
+
+/*p: 租房logo文字部分*/
+.p_login_logo{
+    position: absolute;
+    top:10px;
+    left:160px;
+    font-size:30px;
+}
+
+/*div: 登录表单部分*/
+.div_login_submitform{
+    position: absolute;
+    top:105px;
+    right:90px;
+    background-color: #ffffff;
+    width: 420px;
+    height:280px;
+}
+
+/*div: 登录用户名输入框 */
+.div_login_username{
+    position: absolute;
+    top:20px;
+    right:40px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*div: 登录密码输入框 */
+.div_login_password{
+    position: absolute;
+    top:90px;
+    right:40px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*div: 登录提交按钮输入框 */
+.div_login_postbutton{
+    position: absolute;
+    top:160px;
+    right:40px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*div：登录用户名icon */
+.div_login_icon_username{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 48px;
+   height: 48px;
+}
+
+/*div：登录密码icon */
+.div_login_icon_password{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 48px;
+   height: 48px;
+}
+
+/*image：密码icon*/
+.img_login_username_icon{
+    position: absolute;
+    left: 12px;
+    top:12px;
+    height: 25px;
+    width: 25px;
+}
+
+/*image：登录icon*/
+.img_login_password_icon{
+    position: absolute;
+    left: 12px;
+    top:12px;
+    height: 25px;
+    width: 25px;
+}
+
+/*div: 用户名输入框的div */
+.div_login_input_username{
+    position:absolute;
+    top:0px;
+    left:50px;
+    height:48px;
+    width: 232px;
+}
+
+/*div: 密码输入框的div*/
+.div_login_input_password{
+    position:absolute;
+    top:0px;
+    left:50px;
+    height:48px;
+    width: 232px;
+}
+
+/*登录用户名输入框*/
+.input_login_username{
+    position:absolute;
+    top:0px;
+    left: 0;
+    height:48px;
+    width: 232px;
+    border:0px;
+    font-size:16px; /*设置输入框字体*/
+}
+
+/*登录密码输入框*/
+.input_login_password{
+    position:absolute;
+    top:0px;
+    left: 0;
+    height:48px;
+    width: 232px;
+    border:0px;
+    font-size:16px;/*设置输入框字体*/
+}
+
+.input_login_password:focus{
+    outline:none; /*去除输入框特效*/
+}
+
+.input_login_username:focus{
+    outline:none; /*去除输入框特效*/
+}
+
+/*提交登录按钮特效*/
+.input_login_button{
+    border-radius: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    width: 330px;
+    font-family: Microsoft Yahei;
+    font-size:22px;
+    font-weight:lighter;
+}
+
+/*去除x按钮的特效*/
+.btn_login_close:focus{
+    outline: none;
+}
+
+/*忘记密码或者注册的div*/
+.div_login_unload{
+    position: absolute;
+    top:230px;
+    right:40px;
+    width: 330px;
+    height: 50px;
+}
+
+/*a: 忘记密码标签 */
+.a_login_forgetpassword{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    font-size:12px;
+    color:black;
+}
+
+/*a: 注册标签 */
+.a_login_register{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    font-size:12px;
+    color:black;
+}
+
+/*去除a标签特效*/
+.a_login_register:hover{
+    text-decoration: none;
+    color:deepskyblue;
+}
+
+.a_login_forgetpassword:hover{
+    text-decoration: none;
+    color:deepskyblue;
+}
+
+/*清除用户名信息div*/
+.div_login_clear_username{
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height:48px;
+    width: 40px;
+}
+
+/*清除密码信息div*/
+.div_login_clear_password{
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height:48px;
+    width: 40px;
+}
+
+/* button: 清除密码按钮 */
+.btn_login_clear_password{
+    position:absolute;
+    top: 13px;
+    right: 9px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/miniclose.png')no-repeat;
+    height:22px;
+    width: 22px;
+    border-radius: 0px;
+}
+
+/* button: 清除用户名按钮 */
+.btn_login_clear_username{
+    position:absolute;
+    top: 13px;
+    right: 9px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/miniclose.png')no-repeat;
+    height:22px;
+    width: 22px;
+    border-radius: 0px;
+}
+

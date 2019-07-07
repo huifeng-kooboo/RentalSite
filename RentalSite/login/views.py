@@ -46,7 +46,7 @@ def login(request):
             #遍历表单错误,保存到字符串数组error_tips
             postdata['error_info'] = error_tips
             return JsonResponse(postdata)
-    return render(request,"login/login.html") #登录界面
+    return render(request,"login/login1.html") #登录界面
 
 #用户注册
 @ensure_csrf_cookie
