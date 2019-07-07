@@ -366,3 +366,30 @@ a:hover.g_a_login{
     border-radius: 0px;
 }
 
+/*去除x按钮的特效*/
+.btn_login_clear_username:focus{
+    outline: none;
+}
+
+/*去除x按钮的特效*/
+.btn_login_clear_password:focus{
+    outline: none;
+}
+
+/*div:登录成功导航栏css*/
+.g_nav_login_userinfo{
+    position: absolute;
+    top:0px;
+    right:0px;
+    width: 600px;
+    height:59px;
+}
+
+/*p 用户登录信息标签*/
+.g_p_login_userinfo{
+    position: absolute;
+    top:20px;
+    left: 30px;
+    font-size:15px;
+    font-family: "Microsoft YaHei UI";/*字体雅黑*/
+}

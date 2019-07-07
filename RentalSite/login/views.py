@@ -12,6 +12,7 @@ def checkErrorType():
 #用户登录
 @ensure_csrf_cookie
 def login(request):
+    cur_login_name = getLoginInfo('username') #不存在时候为空
     if request.method == "POST":
         objPOST = LoginForm(request.POST) #验证表单
         ret = objPOST.is_valid() #判断是否有效
@@ -30,12 +31,13 @@ def login(request):
                 postdata['error_info'] = warn_login_str
                 return JsonResponse(postdata) #返回用户名或密码错误信息
             else:
-                #记录用户登录信息
+                #记录用户登录信息：用全局的方式记录
                 initParams()
                 setLoginInfo("flag_login","1")
                 setLoginInfo("username",username)
                 main_href = 1
                 postdata['flag_href'] = main_href
+                postdata['cur_username'] = username #只有登录成功时候才有账号
                 return JsonResponse(postdata) #进入主界面
         else:
             error = objPOST.errors
@@ -46,7 +48,7 @@ def login(request):
             #遍历表单错误,保存到字符串数组error_tips
             postdata['error_info'] = error_tips
             return JsonResponse(postdata)
-    return render(request,"login/login1.html") #登录界面
+    return render(request,"login/login.html",{'innername':cur_login_name}) #登录界面
 
 #用户注册
 @ensure_csrf_cookie
