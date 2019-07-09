@@ -24,7 +24,7 @@
 <div class="col-md-4 g_nav_login_userinfo" style="display: none">
     <!-- 用户名显示-->
     <p class="g_p_login_userinfo">{{ innername }}</p>
-    <!-- DropDown Demo-->
+    <!-- DropDown 下拉框-->
 </div>
 
 </div>
@@ -48,7 +48,7 @@
     <!-- 登录表单的div -->
     <div class="div_login_submitform">
     <!-- 用户名的div -->
-        <div class="div_login_username">
+        <div class="div_login_username" >
 
             <!-- 用户名icon的div -->
             <div class="div_login_icon_username">
@@ -59,7 +59,7 @@
             <!-- 用户名输入框的div -->
             <div class="div_login_input_username">
                 <!-- input login-->
-              <input type="text" class="input_login_username" id="login_username" placeholder="手机号">
+              <input type="text" class="input_login_username" id="login_username" placeholder="手机号"  onfocus="onFocusInLoginUserName()" onblur="onBlurInLoginUserName()">
             </div>
 
             <div class="div_login_clear_username">
@@ -78,9 +78,9 @@
             </div>
 
             <!--密码输入框的div-->
-            <div class="div_login_input_password">
+            <div class="div_login_input_password" >
                 <!-- input password-->
-                <input type="password" id="login_password" class="input_login_password"  placeholder="6-16位密码,区分大小写">
+                <input type="password" id="login_password" class="input_login_password"  placeholder="6-16位密码,区分大小写"  onfocus="onFocusInLoginPassWord()" onblur="onBlurInLoginPassWord()" >
             </div>
 
             <!--清除密码-->
@@ -199,6 +199,43 @@
             }
             });
     });
+
+    /* onfocus方法 用户名登录输入框 */
+    function onFocusInLoginUserName() {
+        $('.div_login_username').css('border-color','#80bdff');
+        $('.btn_login_clear_username').css('display','block');
+    }
+
+   /* onblur方法 用户名登录输入框 */
+    function onBlurInLoginUserName() {
+        $('.div_login_username').css('border-color','darkgray');
+        //$('.btn_login_clear_username').css('display','none');
+    }
+
+    /* onfocus方法 密码登录输入框 */
+    function onFocusInLoginPassWord() {
+        $('.div_login_password').css('border-color','#80bdff');
+        $('.btn_login_clear_password').css('display','block');
+    }
+
+   /* onblur方法 密码登录输入框 */
+    function onBlurInLoginPassWord() {
+        $('.div_login_password').css('border-color','darkgray');
+       // $('.btn_login_clear_password').css('display','none');
+    }
+
+    /*清空用户名输入框方法*/
+    $('.btn_login_clear_username').bind('click',function () {
+        $('.input_login_username').val(''); /*清空输入框字符*/
+        $('.btn_login_clear_username').css('display','none');
+    })
+
+    /*清空密码输入框方法*/
+    $('.btn_login_clear_password').bind('click',function () {
+        $('.input_login_password').val(''); /*清空密码框字符*/
+        $('.btn_login_clear_password').css('display','none');
+    })
+
 
     /*register submit 方法*/
 
