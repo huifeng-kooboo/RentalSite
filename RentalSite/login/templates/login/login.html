@@ -23,7 +23,7 @@
 <!--用户登录成功导航栏前端信息展示-->
 <div class="col-md-4 g_nav_login_userinfo" style="display: none">
     <!-- 用户名显示-->
-    <p class="g_p_login_userinfo">{{ innername }}</p>
+    <p class="g_p_login_userinfo" id="user_info">{{ innername }}</p>
     <!-- DropDown 下拉框-->
 </div>
 
@@ -209,6 +209,7 @@
    /* onblur方法 用户名登录输入框 */
     function onBlurInLoginUserName() {
         $('.div_login_username').css('border-color','darkgray');
+
         //$('.btn_login_clear_username').css('display','none');
     }
 
@@ -236,7 +237,12 @@
         $('.btn_login_clear_password').css('display','none');
     })
 
-
+    /*js hover 改变经过登录信息后鼠标样式事件*/
+    $('.g_p_login_userinfo').hover(function () {
+        //alert('demo');
+        document.getElementById('user_info').style.cursor='pointer'; /*改变鼠标样式*/
+    })
+    
     /*register submit 方法*/
 
 </script>
