@@ -386,10 +386,16 @@ a:hover.g_a_login{
 }
 
 /*p 用户登录信息标签*/
-.g_p_login_userinfo{
+/*.g_p_login_userinfo{
     position: absolute;
     top:20px;
     left: 30px;
     font-size:15px;
     font-family: "Microsoft YaHei UI";/*字体雅黑*/
+/*} */
+
+.div_login_userinfo{
+    position: absolute;
+    top:10px;
+    left: 30px;
 }

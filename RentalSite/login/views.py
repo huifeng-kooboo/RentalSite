@@ -5,6 +5,8 @@ from.models import UserLogin,UserRegister,RentalInfo,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
 from django.views.decorators.csrf import ensure_csrf_cookie
 
+#主要采用JsonResponse 发送数据，好处，能够尽可能实现前后端数据分离，第二阶段采用Vue.js来改写框架
+
 #添加检查错误信息功能（待完善）
 def checkErrorType():
     return 0

@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/login/login.css">
+
 </head>
 <body>
 <!--全局导航栏-->
@@ -23,11 +24,27 @@
 <!--用户登录成功导航栏前端信息展示-->
 <div class="col-md-4 g_nav_login_userinfo" style="display: none">
     <!-- 用户名显示-->
-    <p class="g_p_login_userinfo" id="user_info">{{ innername }}</p>
+    <!--<p class="g_p_login_userinfo" id="user_info">{{ innername }}</p> -->
     <!-- DropDown 下拉框-->
+    <!-- Example split danger button -->
+<div class="btn-group div_login_userinfo" >
+  <button type="button" class="btn btn-danger" id="user_info_names">{{ innername }}</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only"></span>
+  </button>
+<div class="dropdown-menu">
+  <a class="dropdown-item" href="#">个人设置</a>
+      <!-- dropdown-divider 分割符 -->
+  <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">退出登录</a>
+  </div>
 </div>
 
 </div>
+
+</div>
+
+<!-- 下拉框测试 -->
 
 <!-- 登录界面实现 -->
 <!-- div 覆盖实现 实质：渲染前端-->
@@ -125,13 +142,20 @@
 
 
 <!--载入JS库-->
-<script src="/static/bootstrap/js/bootstrap.js"></script>
-<script src="/static/bootstrap/login/login.js"></script>
-<script src="/static/bootstrap/js/jquery-3.4.1.min.js"></script>
-<script>
+    <script src="/static/bootstrap/js/jquery-3.4.1.min.js"></script>
+   <script src="/static/bootstrap/js/popper.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+   <!-- <script src="/static/bootstrap/js/bootstrap.js"></script> -->
+    <script src="/static/bootstrap/login/login.js"></script>
+  <!--  <script src="/static/bootstrap/js/bootstrap.bundle.js"></script> -->
+  <!--  <script src="/static/bootstrap/js/bootstrap-hover-dropdown.min.js"></script> -->
+
+
+
+<script type="text/javascript">
     /* 判断用户是否已经登录 */
     /*逻辑实现：当登录信息为空时，说明未登录*/
-    if ($('.g_p_login_userinfo').text() != "")
+    if ($('#user_info_names').text() != "")
     {
         $('.g_nav_login_userinfo').css('display','block');
         $('.g_nav_build').css('display','none');
@@ -188,7 +212,8 @@
                     $('.g_nav_login_userinfo').css('display','block');
                     $('.g_nav_build').css('display','none');
                     var cur_username = data['cur_username']; //获取用户名
-                    $('.g_p_login_userinfo').text(cur_username);/*text 标签：改变里边的值*/
+                    //$('.g_p_login_userinfo').text(cur_username);/*text 标签：改变里边的值*/
+                    $('#user_info_names').text(cur_username);
                 }
                 /*表示有存在错误信息*/
                 else{
@@ -238,11 +263,10 @@
     })
 
     /*js hover 改变经过登录信息后鼠标样式事件*/
-    $('.g_p_login_userinfo').hover(function () {
+   //$('.g_p_login_userinfo').hover(function () {
         //alert('demo');
-        document.getElementById('user_info').style.cursor='pointer'; /*改变鼠标样式*/
-    })
-    
+     //   document.getElementById('user_info').style.cursor='pointer'; /*改变鼠标样式*/
+    //})
     /*register submit 方法*/
 
 </script>
