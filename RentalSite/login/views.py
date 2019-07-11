@@ -15,6 +15,14 @@ def checkErrorType():
 @ensure_csrf_cookie
 def login(request):
     cur_login_name = getLoginInfo('username') #不存在时候为空
+    #处理get请求
+    if request.method == 'GET':
+        clear_str = request.GET.get('cleardata')
+        #当值为1时，说明发送的是退出的请求
+        if clear_str == '1':
+            clearLoginInfo()  # 清空登录信息
+            return JsonResponse({'get_demo':'1'})
+    #处理post请求
     if request.method == "POST":
         objPOST = LoginForm(request.POST) #验证表单
         ret = objPOST.is_valid() #判断是否有效
@@ -236,7 +244,7 @@ def proInfo(request):
     if request.method == 'GET':
         house_name = request.GET.get('cur_title')
         #查找数据库
-        #bug:为何第一次的时候house_name为none 猜测原因：第一次直接找的是name为cur_title的值(第二阶段的时候解决)
+        #bug:原因 因为请求访问该页面时，就会先发一个get请求，所以是两次
         #当 house_name不为空时候，获取数据库信息
         if not house_name == None:
             house_data = RentHouseInfo.objects.filter(rental_name=str(house_name))
