@@ -14,6 +14,7 @@ def checkErrorType():
 #用户登录
 @ensure_csrf_cookie
 def login(request):
+    house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合：前端界面展示房屋信息
     cur_login_name = getLoginInfo('username') #不存在时候为空
     #处理get请求
     if request.method == 'GET':
@@ -96,7 +97,7 @@ def register(request):
             #遍历表单错误,保存到字符串数组error_tips
             data['error_info'] = error_tips
             return JsonResponse(data)
-    return render(request,"login/register.html")
+    return render(request,"login/login.html")
 
 #主界面主要是展示数据库房屋信息
 def main(request):

@@ -113,7 +113,7 @@
     <!--忘记密码的div-->
         <div class="div_login_unload">
         <a class="a_login_forgetpassword" href="javascript:void(0);">忘记密码?</a>
-        <a class="a_login_register" href="register">去注册</a>
+        <a class="a_login_register" href="javascript:void(0);">去注册</a>
         </div>
     </div>
 </div>
@@ -247,6 +247,15 @@
     /* 点击注册标签，弹出注册界面 */
     $('.g_a_register').bind('click',function () {
         /*显示注册界面*/
+        $('.g_mask').css('display','block');
+        $('.g_div_register').css('display','block');
+        document.title = '租户注册';
+    });
+
+    /* 点击去注册标签，弹出注册界面 */
+    $('.a_login_register').bind('click',function () {
+        /*显示注册界面*/
+        $('.g_div_login').css('display','none');
         $('.g_mask').css('display','block');
         $('.g_div_register').css('display','block');
         document.title = '租户注册';
