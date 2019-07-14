@@ -80,7 +80,7 @@ def register(request):
                 obj = UserRegister.objects.create(username=username, password=password, idcard=idcard,
                                                   rentaddress=rentaddress)  # 保存到数据库当中
                 obj_login = UserLogin.objects.create(username=username, password=password)  # 保存一份到登录数据库
-                flag_href_login = 1 #跳转到login界面
+                flag_href_login = '1' #跳转到login界面
                 data['flag_href'] = flag_href_login
                 return JsonResponse(data) # 使用JsonResponse方法，传递json字符串到前端
             else:

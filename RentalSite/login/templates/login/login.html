@@ -68,7 +68,7 @@
             <!-- 用户名icon的div -->
             <div class="div_login_icon_username">
                 <!-- 填充username.icon-->
-            <img class="img_login_username_icon" src="/static/bootstrap/backimage/username.png"/>
+            <img class="img_login_username_icon" src="/static/bootstrap/backimage/reg_username.png"/>
             </div>
 
             <!-- 用户名输入框的div -->
@@ -89,7 +89,7 @@
             <!-- 密码icon的div -->
             <div class="div_login_icon_password">
                 <!-- 填充password.icon-->
-            <img class="img_login_password_icon" src="/static/bootstrap/backimage/password.png"/>
+            <img class="img_login_password_icon" src="/static/bootstrap/backimage/reg_password.png"/>
             </div>
 
             <!--密码输入框的div-->
@@ -366,15 +366,14 @@
             });
     })
 
+        /*注册模块*/
+
     /*注册退出注册界面事件*/
     $('.btn_register_close').bind('click',function () {
         document.title = '租户登录';
         $('.g_mask').css('display','none');
         $('.g_div_register').css('display','none');
     })
-
-
-    /*注册模块*/
 
     /* onfocus方法 用户名注册输入框 */
     function onFocusInRegisterUserName() {
@@ -427,6 +426,80 @@
 
         //$('.btn_login_clear_username').css('display','none');
     }
+
+    //清空注册界面输入框方法
+
+    /*清空用户名输入框方法*/
+    $('.btn_register_clear_username').bind('click',function () {
+        $('.input_register_username').val(''); /*清空输入框字符*/
+        $('.btn_register_clear_username').css('display','none');
+    })
+
+    /*清空密码输入框方法*/
+    $('.btn_register_clear_password').bind('click',function () {
+        $('.input_register_password').val(''); /*清空密码框字符*/
+        $('.btn_register_clear_password').css('display','none');
+    })
+
+        /*清空用户名输入框方法*/
+    $('.btn_register_clear_idcard').bind('click',function () {
+        $('.input_register_idcard').val(''); /*清空输入框字符*/
+        $('.btn_register_clear_idcard').css('display','none');
+    })
+
+    /*清空密码输入框方法*/
+    $('.btn_register_clear_rentaddress').bind('click',function () {
+        $('.input_register_rentaddress').val(''); /*清空密码框字符*/
+        $('.btn_register_clear_rentaddress').css('display','none');
+    })
+
+    /*注册按钮事件*/
+    /* register submit 方法 */
+    $('#btn_register_submit').bind('click',function () {
+           <!--django csrf认证添加，for ajax-->
+            $.ajaxSetup({
+             data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+
+            <!--获取前端用户名或密码输入数据-->
+            var username = $('#register_username').val();
+            var password = $('#register_password').val();
+            var idcard = $('#register_idcard').val();
+            var rentaddress = $('#register_rentaddress').val();
+            //需要传到服务器的Json数据
+            var post_data ={"username":username,"password":password,"idcard":idcard,"rentaddress":rentaddress,};
+
+            <!--ajax发送post请求-->
+            $.ajax({
+                url:'register', //url指的是相对于本机服务器，请求的uri位置：通过url进行正确的请求
+                type:'POST',   //方法：例如Post/get等等
+                data : post_data, /*客户端发送给服务器传递的参数*/
+                dataType:"json",  /*参数数据类型*/
+                success: function (data) {  //此处的data表示服务器传过来的json数据
+                var flag_href = data['flag_href'];
+                if (flag_href == "1") //1表示跳转，登录成功
+                {
+                    alert("租户注册成功");
+
+                    /* 恢复到主界面 */
+                    $('.g_mask').css('display','none');
+                    $('.g_div_register').css('display','none');
+
+                    /* 登录信息前端显示出来 */
+                    $('.g_nav_login_userinfo').css('display','none');
+                    $('.g_nav_build').css('display','block');
+                    document.title = '租户登录'; /*改变页面的title*/
+                }
+                /*表示有存在错误信息*/
+                else{
+                    alert('租户注册失败');
+                    var error_info = data['error_info']; //获取错误信息
+                    alert(error_info) //弹窗显示错误信息
+                }
+            }
+            });
+    });
+
     /********/
     </script>
 </body>

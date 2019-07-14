@@ -788,4 +788,8 @@ a:hover.g_a_login{
     outline: none;
 }
 
+.btn_register_close:focus{
+    outline: none;
+}
+
 /**********************************/
