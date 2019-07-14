@@ -81,13 +81,13 @@ a:hover.g_a_login{
     border-radius: 20px;/*设置圆角*/
 }
 
-/*div: 注册界面 */
+/* div: 注册界面 */
 .g_div_register {
     position: fixed;
     top: 50%;
     left: 50%;
-    width:600px;
-    height: 430px;
+    width: 500px;
+    height: 600px;
     background: #ffffff;
     -webkit-transform: translateX(-50%) translateY(-50%);
     border-radius: 10px;/*设置圆角*/
@@ -385,17 +385,407 @@ a:hover.g_a_login{
     height:59px;
 }
 
-/*p 用户登录信息标签*/
-/*.g_p_login_userinfo{
-    position: absolute;
-    top:20px;
-    left: 30px;
-    font-size:15px;
-    font-family: "Microsoft YaHei UI";/*字体雅黑*/
-/*} */
 
 .div_login_userinfo{
     position: absolute;
     top:10px;
     left: 30px;
 }
+
+/*div注册界面x图标css*/
+.div_register_button_close{
+    position: absolute;/*相对于外部的div*/
+    top:5px;
+    right:5px;
+    height: 30px;
+    width: 30px;
+    /*border:1px solid #80bdff;*/
+    border-radius: 5px;
+}
+
+/* button: 注册关闭按钮 */
+.btn_register_close{
+    position:absolute;
+    top:0px;
+    right:0px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/closebutton.png')no-repeat;
+    height:30px;
+    width: 30px;
+    border-radius: 0px;
+}
+
+/*div：注册界面租房logo*/
+.div_register_logo{
+    position:absolute;/*绝对布局 相对于父元素*/
+    height:60px;
+    width: 400px;
+    margin:0 auto;
+    top:20px;
+    right:80px;
+    border-color: cornflowerblue;
+}
+
+/*image: 注册租房logo*/
+.img_register_logo{
+    position: absolute;
+    left: 130px;
+    top:10px;
+    height: 40px;
+    width: 40px;
+}
+
+/*p: 租房logo文字部分*/
+.p_register_logo{
+    position: absolute;
+    top:10px;
+    left:190px;
+    font-size:30px;
+}
+
+/*div 注册提交按钮*/
+.div_register_button_submit
+{
+    position: absolute;
+    top:450px;
+    right:80px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*提交注册按钮特效*/
+.input_register_button{
+    border-radius: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    width: 330px;
+    font-family: Microsoft Yahei;
+    font-size:22px;
+    font-weight:lighter;
+}
+
+/*div:注册用户名*/
+.div_register_input_username
+{
+    position: absolute;
+    top:130px;
+    right:80px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*div:注册密码*/
+.div_register_input_password
+{
+    position: absolute;
+    top:205px;
+    right:80px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*div:注册身份证*/
+.div_register_input_idcard
+{
+    position: absolute;
+    top:280px;
+    right:80px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*div:注册地址*/
+.div_register_input_rentaddress
+{
+    position: absolute;
+    top:355px;
+    right:80px;
+    width: 330px;
+    height: 50px;
+    border:1px solid darkgray;
+}
+
+/*div：注册用户名icon */
+.div_register_icon_username{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 48px;
+   height: 48px;
+}
+
+/*image：注册用户名icon*/
+.img_register_username_icon{
+    position: absolute;
+    left: 12px;
+    top:12px;
+    height: 25px;
+    width: 25px;
+}
+
+/*div: 注册用户名输入框的div */
+.div_login_input_register_username{
+    position:absolute;
+    top:0px;
+    left:50px;
+    height:48px;
+    width: 232px;
+}
+
+/*清除注册用户名信息div*/
+.div_register_clear_username{
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height:48px;
+    width: 40px;
+}
+
+/*注册用户名输入框*/
+.input_register_username{
+    position:absolute;
+    top:0px;
+    left: 0;
+    height:48px;
+    width: 232px;
+    border:0px;
+    font-size:16px; /*设置输入框字体*/
+}
+
+/* button: 清除注册用户名按钮 */
+.btn_register_clear_username{
+    position:absolute;
+    top: 13px;
+    right: 9px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/miniclose.png')no-repeat;
+    height:22px;
+    width: 22px;
+    border-radius: 0px;
+}
+
+/******/
+
+/*div：注册用户名icon */
+.div_register_icon_password{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 48px;
+   height: 48px;
+}
+
+/*image：注册用户名icon*/
+.img_register_password_icon{
+    position: absolute;
+    left: 12px;
+    top:12px;
+    height: 25px;
+    width: 25px;
+}
+
+/*div: 注册用户名输入框的div */
+.div_login_input_register_password{
+    position:absolute;
+    top:0px;
+    left:50px;
+    height:48px;
+    width: 232px;
+}
+
+/*清除注册用户名信息div*/
+.div_register_clear_password{
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height:48px;
+    width: 40px;
+}
+
+/*注册用户名输入框*/
+.input_register_password{
+    position:absolute;
+    top:0px;
+    left: 0;
+    height:48px;
+    width: 232px;
+    border:0px;
+    font-size:16px; /*设置输入框字体*/
+}
+
+/* button: 清除注册用户名按钮 */
+.btn_register_clear_password{
+    position:absolute;
+    top: 13px;
+    right: 9px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/miniclose.png')no-repeat;
+    height:22px;
+    width: 22px;
+    border-radius: 0px;
+}
+
+/******/
+
+/*div：注册用户名icon */
+.div_register_icon_idcard{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 48px;
+   height: 48px;
+}
+
+/*image：注册用户名icon*/
+.img_register_idcard_icon{
+    position: absolute;
+    left: 12px;
+    top:12px;
+    height: 25px;
+    width: 25px;
+}
+
+/*div: 注册用户名输入框的div */
+.div_login_input_register_idcard{
+    position:absolute;
+    top:0px;
+    left:50px;
+    height:48px;
+    width: 232px;
+}
+
+/*清除注册用户名信息div*/
+.div_register_clear_idcard{
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height:48px;
+    width: 40px;
+}
+
+/*注册用户名输入框*/
+.input_register_idcard{
+    position:absolute;
+    top:0px;
+    left: 0;
+    height:48px;
+    width: 232px;
+    border:0px;
+    font-size:16px; /*设置输入框字体*/
+}
+
+/* button: 清除注册用户名按钮 */
+.btn_register_clear_idcard{
+    position:absolute;
+    top: 13px;
+    right: 9px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/miniclose.png')no-repeat;
+    height:22px;
+    width: 22px;
+    border-radius: 0px;
+}
+
+
+/******/
+
+/*div：注册用户名icon */
+.div_register_icon_rentaddress{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 48px;
+   height: 48px;
+}
+
+/*image：注册用户名icon*/
+.img_register_rentaddress_icon{
+    position: absolute;
+    left: 12px;
+    top:12px;
+    height: 25px;
+    width: 25px;
+}
+
+/*div: 注册用户名输入框的div */
+.div_login_input_register_rentaddress{
+    position:absolute;
+    top:0px;
+    left:50px;
+    height:48px;
+    width: 232px;
+}
+
+/*清除注册用户名信息div*/
+.div_register_clear_rentaddress{
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height:48px;
+    width: 40px;
+}
+
+/*注册用户名输入框*/
+.input_register_rentaddress{
+    position:absolute;
+    top:0px;
+    left: 0;
+    height:48px;
+    width: 232px;
+    border:0px;
+    font-size:16px; /*设置输入框字体*/
+}
+
+/* button: 清除注册用户名按钮 */
+.btn_register_clear_rentaddress{
+    position:absolute;
+    top: 13px;
+    right: 9px;
+    border-color: transparent;
+    background: url('/static/bootstrap/backimage/miniclose.png')no-repeat;
+    height:22px;
+    width: 22px;
+    border-radius: 0px;
+}
+
+/*去除输入时候框框特效*/
+.input_register_password:focus{
+    outline:none; /*去除输入框特效*/
+}
+
+.input_register_username:focus{
+    outline:none; /*去除输入框特效*/
+}
+
+.input_register_idcard:focus{
+    outline:none; /*去除输入框特效*/
+}
+
+.input_register_rentaddress:focus{
+    outline:none; /*去除输入框特效*/
+}
+
+/*去除清除按钮特效*/
+.btn_register_clear_username:focus{
+    outline: none;
+}
+
+.btn_register_clear_password:focus{
+    outline: none;
+}
+
+.btn_register_clear_idcard:focus{
+    outline: none;
+}
+
+.btn_register_clear_rentaddress:focus{
+    outline: none;
+}
+
+/**********************************/

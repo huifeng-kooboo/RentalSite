@@ -44,7 +44,7 @@
 
 <!-- 下拉框测试 -->
 
-<!-- 登录界面实现 -->
+<!-- 登录/注册界面实现 -->
 <!-- div 覆盖实现 实质：渲染前端-->
 <!-- div g_mask 主要作用是覆盖原先 rgba(0,0,0,.6)浅灰色覆盖 -->
 <div class="g_mask" style="display: none">
@@ -122,14 +122,105 @@
 <div class="g_div_register" style="display: none">
     <!-- 关闭按钮的div-->
     <div class="div_register_button_close">
-
+        <!--关闭图标-->
+        <input type="button" class="btn_register_close">
     </div>
     <!-- 注册logo的div -->
     <div class="div_register_logo">
-
+        <img class="img_register_logo" src="/static/bootstrap/backimage/backhouse.png"/>
+        <p class="p_register_logo">租户注册</p>
     </div>
     <!-- 注册表单的div -->
     <div class="g_div_register_submitform">
+
+        <!-- 注册用户名输入div -->
+        <div class="div_register_input_username">
+            <!-- 用户名icon的div -->
+            <div class="div_register_icon_username">
+                <!-- 填充username.icon-->
+            <img class="img_register_username_icon" src="/static/bootstrap/backimage/reg_username.png"/>
+            </div>
+
+            <!-- 注册用户名输入框的div -->
+            <div class="div_login_input_register_username">
+                <!-- input login-->
+              <input type="text" class="input_register_username" id="register_username" placeholder="手机号"  onfocus="onFocusInRegisterUserName()" onblur="onBlurInRegisterUserName()">
+            </div>
+
+            <!--div:清理用户名输入按钮-->
+            <div class="div_register_clear_username">
+                <button class="btn_register_clear_username"></button>
+            </div>
+
+        </div>
+
+        <!-- 注册密码输入div -->
+        <div class="div_register_input_password">
+
+            <!-- 注册密码icon的div -->
+            <div class="div_register_icon_password">
+                <!-- 填充password.icon-->
+            <img class="img_register_password_icon" src="/static/bootstrap/backimage/reg_password.png"/>
+            </div>
+
+            <!-- 注册密码输入框的div -->
+            <div class="div_login_input_register_password">
+                <!-- input login-->
+              <input type="password" class="input_register_password" id="register_password" placeholder="用户密码"  onfocus="onFocusInRegisterpassword()" onblur="onBlurInRegisterpassword()">
+            </div>
+
+            <!--div:清理密码输入按钮-->
+            <div class="div_register_clear_password">
+                <button class="btn_register_clear_password"></button>
+            </div>
+        </div>
+
+        <!--注册身份证输入div-->
+        <div class="div_register_input_idcard">
+
+            <!-- 身份证icon的div -->
+            <div class="div_register_icon_idcard">
+                <!-- 填充username.icon-->
+            <img class="img_register_idcard_icon" src="/static/bootstrap/backimage/reg_idcard.png"/>
+            </div>
+
+            <!-- 注册身份证输入框的div -->
+            <div class="div_login_input_register_idcard">
+                <!-- input login-->
+              <input type="text" class="input_register_idcard" id="register_idcard" placeholder="身份证号"  onfocus="onFocusInRegisteridcard()" onblur="onBlurInRegisteridcard()">
+            </div>
+
+            <!--div:清理身份证输入按钮-->
+            <div class="div_register_clear_idcard">
+                <button class="btn_register_clear_idcard"></button>
+            </div>
+        </div>
+
+        <!-- 注册住址输入div -->
+        <div class="div_register_input_rentaddress">
+
+            <!-- 用户住址icon的div -->
+            <div class="div_register_icon_rentaddress">
+                <!-- 填充rentaddress.icon-->
+            <img class="img_register_rentaddress_icon" src="/static/bootstrap/backimage/reg_rentaddress.png"/>
+            </div>
+
+            <!-- 注册用户住址输入框的div -->
+            <div class="div_login_input_register_rentaddress">
+                <!-- input login-->
+              <input type="text" class="input_register_rentaddress" id="register_rentaddress" placeholder="住址"  onfocus="onFocusInRegisterrentaddress()" onblur="onBlurInRegisterrentaddress()">
+            </div>
+
+            <!--div:清理用户住址输入按钮-->
+            <div class="div_register_clear_rentaddress">
+                <button class="btn_register_clear_rentaddress"></button>
+            </div>
+        </div>
+
+        <!-- 用户提交注册按钮 -->
+        <div class="div_register_button_submit">
+            <button type="button" id="btn_register_submit" class="btn btn-danger input_register_button">注 册</button>
+        </div>
 
     </div>
 </div>
@@ -141,16 +232,10 @@
 
 <!--载入JS库-->
     <script src="/static/bootstrap/js/jquery-3.4.1.min.js"></script>
-   <script src="/static/bootstrap/js/popper.min.js"></script>
+    <script src="/static/bootstrap/js/popper.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-   <!-- <script src="/static/bootstrap/js/bootstrap.js"></script> -->
     <script src="/static/bootstrap/login/login.js"></script>
-  <!--  <script src="/static/bootstrap/js/bootstrap.bundle.js"></script> -->
-  <!--  <script src="/static/bootstrap/js/bootstrap-hover-dropdown.min.js"></script> -->
-
-
-
-<script type="text/javascript">
+    <script type="text/javascript">
     /* 判断用户是否已经登录 */
     /*逻辑实现：当登录信息为空时，说明未登录*/
     if ($('#user_info_names').text() != "")
@@ -164,6 +249,7 @@
         /*显示注册界面*/
         $('.g_mask').css('display','block');
         $('.g_div_register').css('display','block');
+        document.title = '租户注册';
     });
 
     /* 点击登录标签，弹出登录界面 */
@@ -260,7 +346,7 @@
         $('.btn_login_clear_password').css('display','none');
     })
 
-    /*退出登录事件*/
+    /*退出注销登录事件*/
     $('#btn_login_exit').bind('click',function () {
         $('.g_nav_login_userinfo').css('display','none');/*隐藏登录的窗体*/
         $('.g_nav_build').css('display','block'); /*显示注册的窗体*/
@@ -280,6 +366,68 @@
             });
     })
 
-</script>
+    /*注册退出注册界面事件*/
+    $('.btn_register_close').bind('click',function () {
+        document.title = '租户登录';
+        $('.g_mask').css('display','none');
+        $('.g_div_register').css('display','none');
+    })
+
+
+    /*注册模块*/
+
+    /* onfocus方法 用户名注册输入框 */
+    function onFocusInRegisterUserName() {
+        $('.div_register_input_username').css('border-color','#80bdff');
+        $('.btn_register_clear_username').css('display','block');
+    }
+
+   /* onblur方法 用户名注册输入框 */
+    function onBlurInRegisterUserName() {
+        $('.div_register_input_username').css('border-color','darkgray');
+
+        //$('.btn_login_clear_username').css('display','none');
+    }
+
+        /* onfocus方法 密码注册输入框 */
+    function onFocusInRegisterpassword() {
+        $('.div_register_input_password').css('border-color','#80bdff');
+        $('.btn_register_clear_password').css('display','block');
+    }
+
+   /* onblur方法 密码注册输入框 */
+    function onBlurInRegisterpassword() {
+        $('.div_register_input_password').css('border-color','darkgray');
+
+        //$('.btn_login_clear_username').css('display','none');
+    }
+
+        /* onfocus方法 身份证注册输入框 */
+    function onFocusInRegisteridcard() {
+        $('.div_register_input_idcard').css('border-color','#80bdff');
+        $('.btn_register_clear_idcard').css('display','block');
+    }
+
+   /* onblur方法 身份证注册输入框 */
+    function onBlurInRegisteridcard() {
+        $('.div_register_input_idcard').css('border-color','darkgray');
+
+        //$('.btn_login_clear_username').css('display','none');
+    }
+
+        /* onfocus方法 住址注册输入框 */
+    function onFocusInRegisterrentaddress() {
+        $('.div_register_input_rentaddress').css('border-color','#80bdff');
+        $('.btn_register_clear_rentaddress').css('display','block');
+    }
+
+   /* onblur方法 住址注册输入框 */
+    function onBlurInRegisterrentaddress() {
+        $('.div_register_input_rentaddress').css('border-color','darkgray');
+
+        //$('.btn_login_clear_username').css('display','none');
+    }
+    /********/
+    </script>
 </body>
 </html>

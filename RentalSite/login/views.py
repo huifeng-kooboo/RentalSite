@@ -18,7 +18,7 @@ def login(request):
     #处理get请求
     if request.method == 'GET':
         clear_str = request.GET.get('cleardata')
-        #当值为1时，说明发送的是退出的请求
+        #当前端接收的值为1时，说明发送的是退出登录的请求
         if clear_str == '1':
             clearLoginInfo()  # 清空登录信息
             return JsonResponse({'get_demo':'1'})
