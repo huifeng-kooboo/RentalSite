@@ -793,3 +793,37 @@ a:hover.g_a_login{
 }
 
 /**********************************/
+
+/*********************************************/
+/*****主界面css*****/
+.g_div_mainpage
+{
+    position:absolute;
+    top:60px;
+    bottom:25px;
+    left:0px;
+    width: 100%;
+    background-color: deepskyblue;
+}
+
+/*******侧边导航栏css*********/
+.g_div_sidebar
+{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:300px;
+    height:100%;
+    background-color: red;
+}
+
+/************************************************/
+/* 页脚 */
+.g_div_footpage
+{
+    position:absolute;
+    bottom:0px;
+    width:100%;
+    height:25px;
+    background-color: orange;
+}

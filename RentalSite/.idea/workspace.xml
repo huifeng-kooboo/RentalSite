@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c6e3997-ea5f-4a33-b4fc-e1ce08b227ae" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/templates/login/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/login/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/bootstrap/login/login.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="95" column="48" lean-forward="true" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
+            <state relative-caret-position="-109">
+              <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -47,13 +47,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="252" column="7" lean-forward="true" selection-start-line="252" selection-start-column="7" selection-end-line="252" selection-end-column="7" />
+            <state relative-caret-position="365">
+              <caret line="237" column="26" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/bootstrap/login/login.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="895">
+              <caret line="826" column="16" lean-forward="true" selection-start-line="826" selection-start-column="16" selection-end-line="826" selection-end-column="16" />
               <folding>
-                <element signature="e#15955#17673#0#HTML" />
+                <element signature="e#283#366#0" />
+                <element signature="e#387#621#0" />
+                <element signature="e#645#878#0" />
+                <element signature="e#916#974#0" />
+                <element signature="e#1009#1067#0" />
+                <element signature="e#1089#1194#0" />
+                <element signature="e#1223#1456#0" />
               </folding>
             </state>
           </provider>
@@ -73,7 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Rental_Info</find>
       <find>rent_phone</find>
       <find>update</find>
       <find>option</find>
@@ -103,6 +117,7 @@
       <find>btn_login_cl</find>
       <find>g_a_register</find>
       <find>register</find>
+      <find>g_nav_head</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,16 +150,16 @@
         <option value="$PROJECT_DIR$/login/templates/login/login1.html" />
         <option value="$PROJECT_DIR$/login/globalvariant.py" />
         <option value="$PROJECT_DIR$/login/templates/login/register1.html" />
-        <option value="$PROJECT_DIR$/static/bootstrap/login/login.css" />
         <option value="$PROJECT_DIR$/login/templates/login/register.html" />
-        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
         <option value="$PROJECT_DIR$/login/views.py" />
+        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
+        <option value="$PROJECT_DIR$/static/bootstrap/login/login.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="585" />
-    <option name="y" value="94" />
+    <option name="x" value="595" />
+    <option name="y" value="42" />
     <option name="width" value="1266" />
     <option name="height" value="1058" />
   </component>
@@ -154,7 +169,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,10 +219,18 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RentalSite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RentalSite" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -382,7 +404,8 @@
       <workItem from="1563065551744" duration="4466000" />
       <workItem from="1563071137989" duration="1957000" />
       <workItem from="1563089467134" duration="2369000" />
-      <workItem from="1563142021752" duration="1399000" />
+      <workItem from="1563142021752" duration="2425000" />
+      <workItem from="1563201387277" duration="3226000" />
     </task>
     <task id="LOCAL-00001" summary="提交到页面当中">
       <created>1561067643042</created>
@@ -402,18 +425,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230863000" />
+    <option name="totallyTimeSpent" value="235115000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="595" y="42" width="1266" height="1058" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17110874" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26865673" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49573562" weight="0.37310195" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.75959486" visible="true" weight="0.3449024" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75870645" weight="0.34415585" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -421,7 +443,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" sideWeight="0.49946696" weight="0.329718" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.24040511" side_tool="true" visible="true" weight="0.3449024" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.24129353" side_tool="true" visible="true" weight="0.34415585" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4978678" weight="0.20932755" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -696,23 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/bootstrap/login/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="781" selection-start-line="781" selection-end-line="781" />
-          <folding>
-            <element signature="e#21#240#0" />
-            <element signature="e#283#366#0" />
-            <element signature="e#387#621#0" />
-            <element signature="e#645#878#0" />
-            <element signature="e#916#974#0" />
-            <element signature="e#1009#1067#0" />
-            <element signature="e#1089#1194#0" />
-            <element signature="e#1223#1456#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -723,29 +728,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/login/register.html">
+    <entry file="file://$PROJECT_DIR$/login/templates/login/register.html" />
+    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
+        <state relative-caret-position="365">
+          <caret line="237" column="26" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/login/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="95" column="48" lean-forward="true" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
+        <state relative-caret-position="-109">
+          <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
+    <entry file="file://$PROJECT_DIR$/static/bootstrap/login/login.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="252" column="7" lean-forward="true" selection-start-line="252" selection-start-column="7" selection-end-line="252" selection-end-column="7" />
+        <state relative-caret-position="895">
+          <caret line="826" column="16" lean-forward="true" selection-start-line="826" selection-start-column="16" selection-end-line="826" selection-end-column="16" />
           <folding>
-            <element signature="e#15955#17673#0#HTML" />
+            <element signature="e#283#366#0" />
+            <element signature="e#387#621#0" />
+            <element signature="e#645#878#0" />
+            <element signature="e#916#974#0" />
+            <element signature="e#1009#1067#0" />
+            <element signature="e#1089#1194#0" />
+            <element signature="e#1223#1456#0" />
           </folding>
         </state>
       </provider>
