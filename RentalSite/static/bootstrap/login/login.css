@@ -803,18 +803,6 @@ a:hover.g_a_login{
     bottom:25px;
     left:0px;
     width: 100%;
-    background-color: deepskyblue;
-}
-
-/*******侧边导航栏css*********/
-.g_div_sidebar
-{
-    position:absolute;
-    top:0px;
-    left:0px;
-    width:300px;
-    height:100%;
-    background-color: red;
 }
 
 /************************************************/
@@ -825,5 +813,48 @@ a:hover.g_a_login{
     bottom:0px;
     width:100%;
     height:25px;
-    background-color: orange;
+}
+
+/* 导航框**/
+.g_nav_slidebar
+{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width: 800px;
+    height:60px;
+    border:1px solid red;
+}
+
+/*logo*/
+.g_nav_div_logo
+{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width: 300px;
+    height:60px;
+    border: 1px solid yellow;
+}
+
+/**主页**/
+.g_nav_div_main
+{
+    position:absolute;
+    top:0px;
+    left:300px;
+    width: 300px;
+    height:60px;
+    border: 1px solid blue;
+}
+
+/*个人设置标签*/
+.g_nav_div_setting
+{
+    position:absolute;
+    top:0px;
+    left:600px;
+    width: 200px;
+    height:60px;
+    border: 1px solid chartreuse;
 }

@@ -38,7 +38,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
+            <state relative-caret-position="2160">
               <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
@@ -47,29 +47,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="237" column="26" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="26" />
+            <state relative-caret-position="161">
+              <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/bootstrap/login/login.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="895">
-              <caret line="826" column="16" lean-forward="true" selection-start-line="826" selection-start-column="16" selection-end-line="826" selection-end-column="16" />
-              <folding>
-                <element signature="e#283#366#0" />
-                <element signature="e#387#621#0" />
-                <element signature="e#645#878#0" />
-                <element signature="e#916#974#0" />
-                <element signature="e#1009#1067#0" />
-                <element signature="e#1089#1194#0" />
-                <element signature="e#1223#1456#0" />
-              </folding>
+            <state relative-caret-position="370">
+              <caret line="858" column="33" selection-start-line="858" selection-start-column="33" selection-end-line="858" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -88,7 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rent_phone</find>
       <find>update</find>
       <find>option</find>
       <find>main</find>
@@ -117,6 +107,7 @@
       <find>btn_login_cl</find>
       <find>g_a_register</find>
       <find>register</find>
+      <find>g_nav_sidebar</find>
       <find>g_nav_head</find>
     </findStrings>
   </component>
@@ -152,8 +143,8 @@
         <option value="$PROJECT_DIR$/login/templates/login/register1.html" />
         <option value="$PROJECT_DIR$/login/templates/login/register.html" />
         <option value="$PROJECT_DIR$/login/views.py" />
-        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
         <option value="$PROJECT_DIR$/static/bootstrap/login/login.css" />
+        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
       </list>
     </option>
   </component>
@@ -169,6 +160,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,7 +222,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,6 +397,10 @@
       <workItem from="1563089467134" duration="2369000" />
       <workItem from="1563142021752" duration="2425000" />
       <workItem from="1563201387277" duration="3226000" />
+      <workItem from="1563280749898" duration="2258000" />
+      <workItem from="1563287006844" duration="330000" />
+      <workItem from="1563288031210" duration="2478000" />
+      <workItem from="1563366458132" duration="253000" />
     </task>
     <task id="LOCAL-00001" summary="提交到页面当中">
       <created>1561067643042</created>
@@ -425,17 +420,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="235115000" />
+    <option name="totallyTimeSpent" value="240434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="595" y="42" width="1266" height="1058" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26865673" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22885571" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49573562" weight="0.37310195" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75870645" weight="0.34415585" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7562189" weight="0.45779222" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -443,7 +439,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" sideWeight="0.49946696" weight="0.329718" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.24129353" side_tool="true" visible="true" weight="0.34415585" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.24378109" side_tool="true" visible="true" weight="0.45779222" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4978678" weight="0.20932755" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -729,16 +725,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/login/templates/login/register.html" />
-    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="237" column="26" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
+        <state relative-caret-position="2160">
           <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
@@ -748,17 +737,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/bootstrap/login/login.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="895">
-          <caret line="826" column="16" lean-forward="true" selection-start-line="826" selection-start-column="16" selection-end-line="826" selection-end-column="16" />
-          <folding>
-            <element signature="e#283#366#0" />
-            <element signature="e#387#621#0" />
-            <element signature="e#645#878#0" />
-            <element signature="e#916#974#0" />
-            <element signature="e#1009#1067#0" />
-            <element signature="e#1089#1194#0" />
-            <element signature="e#1223#1456#0" />
-          </folding>
+        <state relative-caret-position="370">
+          <caret line="858" column="33" selection-start-line="858" selection-start-column="33" selection-end-line="858" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
         </state>
       </provider>
     </entry>

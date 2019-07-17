@@ -15,6 +15,27 @@
 <body>
 <!--全局导航栏-->
 <div class="g_nav_head">
+
+<div class="g_nav_slidebar">
+
+<!--导航栏logo-->
+<div class="g_nav_div_logo">
+
+</div>
+
+<!--主页a标签div-->
+<div class="g_nav_div_main">
+<a class="g_a_main">主页</a>
+</div>
+
+<!--个人设置a标签div-->
+<div class="g_nav_div_setting">
+<a class="g_a_personsetting">个人设置</a>
+</div>
+
+</div>
+
+
 <!--用户登录注册栏-->
 <div class="g_nav_user col-md-4 g_nav_build">
     <a href="javascript:void(0);" class="g_a_register">注册</a>
@@ -228,11 +249,7 @@
 
 <!-- 主界面 负责租房页面展示 -->
 <div class="g_div_mainpage">
-
-<!-- 侧边导航栏 -->
-<div class="g_div_sidebar">
-</div>
-
+<h1>测试大胆</h1>
 </div>
 <!--页脚，主要用来记录个人信息等无关紧要的东西-->
 <div class="g_div_footpage">
@@ -258,6 +275,7 @@
         /*显示注册界面*/
         $('.g_mask').css('display','block');
         $('.g_div_register').css('display','block');
+        $('.g_div_mainpage').css('display','none');//注册的时候隐藏
         document.title = '租户注册';
     });
 
@@ -267,6 +285,7 @@
         $('.g_div_login').css('display','none');
         $('.g_mask').css('display','block');
         $('.g_div_register').css('display','block');
+        $('.g_div_mainpage').css('display','none');//注册的时候隐藏
         document.title = '租户注册';
     });
 
@@ -274,12 +293,14 @@
     $('.g_a_login').bind('click',function () {
         $('.g_mask').css('display','block');
         $('.g_div_login').css('display','block');
+        $('.g_div_mainpage').css('display','none');//注册的时候隐藏
     });
 
     /* 登录关闭按钮事件 */
     $('.btn_login_close').bind('click',function(){
         $('.g_mask').css('display','none');
         $('.g_div_login').css('display','none');
+        $('.g_div_mainpage').css('display','block');//注册的时候隐藏
     });
 
     /* login submit 方法 */
@@ -315,6 +336,7 @@
                     $('.g_nav_build').css('display','none');
                     var cur_username = data['cur_username']; //获取用户名
                     $('#user_info_names').text(cur_username);
+                    $('.g_div_mainpage').css('display','block');//注册的时候隐藏
                     document.title = cur_username; /*改变页面的title*/
                 }
                 /*表示有存在错误信息*/
@@ -391,6 +413,7 @@
         document.title = '租户登录';
         $('.g_mask').css('display','none');
         $('.g_div_register').css('display','none');
+        $('.g_div_mainpage').css('display','block');//注册的时候隐藏
     })
 
     /* onfocus方法 用户名注册输入框 */
@@ -506,6 +529,7 @@
                     /* 登录信息前端显示出来 */
                     $('.g_nav_login_userinfo').css('display','none');
                     $('.g_nav_build').css('display','block');
+                    $('.g_div_mainpage').css('display','block');//注册的时候隐藏
                     document.title = '租户登录'; /*改变页面的title*/
                 }
                 /*表示有存在错误信息*/
