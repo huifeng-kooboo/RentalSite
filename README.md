@@ -2,7 +2,7 @@
 
 ## Interview:
 
-### ``` 这个后面补充 ，差介绍项目 ```
+### ``` 纯django框架开发的一个很垃圾的系统，因为比较糟糕和初级 所以开源 ```
 
 ## Coding Language:
 ### Python,Html,Css,Javascript

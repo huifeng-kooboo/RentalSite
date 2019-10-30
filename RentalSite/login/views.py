@@ -5,6 +5,8 @@ from.models import UserLogin,UserRegister,RentalInfo,RentHouseInfo,LandloadInfo
 from.globalvariant import initParams,setLoginInfo,getLoginInfo,clearLoginInfo
 from django.views.decorators.csrf import ensure_csrf_cookie
 
+#主要采用JsonResponse 发送数据，好处，能够尽可能实现前后端数据分离，第二阶段采用Vue.js来改写框架
+
 #添加检查错误信息功能（待完善）
 def checkErrorType():
     return 0
@@ -12,6 +14,16 @@ def checkErrorType():
 #用户登录
 @ensure_csrf_cookie
 def login(request):
+    house_info_list = RentHouseInfo.objects.all() #获得房屋信息集合：前端界面展示房屋信息
+    cur_login_name = getLoginInfo('username') #不存在时候为空
+    #处理get请求
+    if request.method == 'GET':
+        clear_str = request.GET.get('cleardata')
+        #当前端接收的值为1时，说明发送的是退出登录的请求
+        if clear_str == '1':
+            clearLoginInfo()  # 清空登录信息
+            return JsonResponse({'get_demo':'1'})
+    #处理post请求
     if request.method == "POST":
         objPOST = LoginForm(request.POST) #验证表单
         ret = objPOST.is_valid() #判断是否有效
@@ -30,12 +42,13 @@ def login(request):
                 postdata['error_info'] = warn_login_str
                 return JsonResponse(postdata) #返回用户名或密码错误信息
             else:
-                #记录用户登录信息
+                #记录用户登录信息：用全局的方式记录
                 initParams()
                 setLoginInfo("flag_login","1")
                 setLoginInfo("username",username)
                 main_href = 1
                 postdata['flag_href'] = main_href
+                postdata['cur_username'] = username #只有登录成功时候才有账号
                 return JsonResponse(postdata) #进入主界面
         else:
             error = objPOST.errors
@@ -46,7 +59,7 @@ def login(request):
             #遍历表单错误,保存到字符串数组error_tips
             postdata['error_info'] = error_tips
             return JsonResponse(postdata)
-    return render(request,"login/login.html") #登录界面
+    return render(request,"login/login.html",{'innername':cur_login_name}) #登录界面
 
 #用户注册
 @ensure_csrf_cookie
@@ -68,7 +81,7 @@ def register(request):
                 obj = UserRegister.objects.create(username=username, password=password, idcard=idcard,
                                                   rentaddress=rentaddress)  # 保存到数据库当中
                 obj_login = UserLogin.objects.create(username=username, password=password)  # 保存一份到登录数据库
-                flag_href_login = 1 #跳转到login界面
+                flag_href_login = '1' #跳转到login界面
                 data['flag_href'] = flag_href_login
                 return JsonResponse(data) # 使用JsonResponse方法，传递json字符串到前端
             else:
@@ -84,7 +97,7 @@ def register(request):
             #遍历表单错误,保存到字符串数组error_tips
             data['error_info'] = error_tips
             return JsonResponse(data)
-    return render(request,"login/register.html")
+    return render(request,"login/login.html")
 
 #主界面主要是展示数据库房屋信息
 def main(request):
@@ -117,7 +130,7 @@ def renterSetting(request):
     #获取租户信息
     rent_phone = getLoginInfo("username") #获取租户手机号
     rent_info_list = RentalInfo.objects.filter(rent_phone=rent_phone) #找到对应的租户信息，传到前端
-    #说明房东未设置，直接报错即可  后期优化
+    #说明房东未设置，直接报错即可后期优化
     if len(rent_info_list) < 1:
         return redirect('ErrorInfo')
     #找到则返回正确界面
@@ -232,17 +245,17 @@ def proInfo(request):
     if request.method == 'GET':
         house_name = request.GET.get('cur_title')
         #查找数据库
-        #bug:为何第一次的时候house_name为none 猜测原因：第一次直接找的是name为cur_title的值(第二阶段的时候解决)
+        #bug:原因 因为请求访问该页面时，就会先发一个get请求，所以是两次
         #当 house_name不为空时候，获取数据库信息
         if not house_name == None:
             house_data = RentHouseInfo.objects.filter(rental_name=str(house_name))
             rental_name = house_data[0].rental_name #业主姓名
             house_price = house_data[0].house_price #价格
-            #house_image = house_data[0].house_image #房子照片
+            house_image_url = house_data[0].house_image.url #房子照片
             write_interview =house_data[0].write_interview #房屋介绍
             cur_address = house_data[0].cur_address #当前住址
             phone_number = house_data[0].phone_number #联系手机号
-            data = {'rental_name':rental_name,'house_price':house_price,
+            data = {'rental_name':rental_name,'house_price':house_price,'house_image_url':house_image_url,
                     'write_interview':write_interview,'cur_address':cur_address,'phone_number':phone_number}
             return JsonResponse(data)
     return render(request,'main/proinfo.html',{'UserName':username,'':house_info_list})
